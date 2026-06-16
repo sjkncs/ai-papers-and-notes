@@ -1,0 +1,122 @@
+# ============================================================================
+# Ministral 3 — Default Training Configuration / 默认训练配置
+# ============================================================================
+# 参数高效密集语言模型训练配置 / Parameter-efficient dense LLM training config
+# 支持 3B / 8B / 14B 三种规模 / Supports 3B / 8B / 14B model sizes
+# ============================================================================
+
+# 模型配置 / Model Configuration
+model:
+  # 模型规模选择: "3B", "8B", "14B" / Model size selection
+  size: "3B"
+
+  # 隐藏层维度（根据规模自动调整）/ Hidden dimension (auto-adjusted by size)
+  # 3B: 2560, 8B: 4096, 14B: 5120
+  hidden_dim: 2560
+
+  # Transformer层数 / Number of transformer layers
+  # 3B: 24, 8B: 32, 14B: 40
+  num_layers: 24
+
+  # 注意力头数 / Number of attention heads
+  # 3B: 20, 8B: 32, 14B: 40
+  num_heads: 20
+
+  # KV头数（GQA比例）/ Number of KV heads (GQA ratio)
+  # 3B: 5, 8B: 8, 14B: 10
+  num_kv_heads: 5
+
+  # 词表大小 / Vocabulary size
+  vocab_size: 32000
+
+  # FFN中间层维度的缩放因子 / FFN intermediate dimension scaling factor
+  # 共享权重FFN使用更小的缩放因子 / Shared-weight FFN uses smaller scaling factor
+  ffn_scale: 2.67
+
+  # 最大序列长度 / Maximum sequence length
+  max_seq_len: 4096
+
+  # RoPE基础频率 / RoPE base frequency
+  rope_theta: 10000.0
+
+  # 是否启用共享权重FFN / Enable shared-weight FFN
+  shared_ffn: true
+
+# 训练配置 / Training Configuration
+training:
+  # 批量大小（全局，跨GPU累积）/ Batch size (global, accumulated across GPUs)
+  batch_size: 256
+
+  # 学习率 / Learning rate
+  learning_rate: 3.0e-4
+
+  # 最小学习率（余弦退火的终点）/ Minimum learning rate (cosine annealing endpoint)
+  min_lr: 3.0e-5
+
+  # 预热步数 / Warmup steps
+  warmup_steps: 2000
+
+  # 总训练步数 / Total training steps
+  max_steps: 500000
+
+  # 权重衰减 / Weight decay
+  weight_decay: 0.1
+
+  # 梯度裁剪最大值 / Gradient clipping max value
+  grad_clip: 1.0
+
+  # 混合精度训练 (fp16/bf16/fp32) / Mixed precision training
+  precision: "bf16"
+
+  # 梯度累积步数 / Gradient accumulation steps
+  grad_accum_steps: 8
+
+  # 优化器选择 / Optimizer selection
+  optimizer: "adamw"
+
+  # AdamW beta参数 / AdamW beta parameters
+  beta1: 0.9
+  beta2: 0.95
+
+# 日志配置 / Logging Configuration
+logging:
+  # 日志输出目录 / Log output directory
+  log_dir: "./logs/ministral-3"
+
+  # 每N步记录一次训练指标 / Log training metrics every N steps
+  log_interval: 100
+
+  # 每N步保存一次检查点 / Save checkpoint every N steps
+  save_interval: 5000
+
+  # 每N步进行一次验证 / Validate every N steps
+  eval_interval: 2000
+
+  # WandB项目名 / WandB project name
+  wandb_project: "ministral-3"
+
+  # 是否启用TensorBoard / Enable TensorBoard
+  tensorboard: true
+
+# 评估配置 / Evaluation Configuration
+evaluation:
+  # 评估基准列表 / Evaluation benchmark list
+  benchmarks:
+    - "hellaswag"
+    - "winogrande"
+    - "arc_challenge"
+    - "mmlu"
+    - "truthfulqa"
+    - "gsm8k"
+
+  # 评估时的最大生成token数 / Max generation tokens during evaluation
+  max_gen_tokens: 512
+
+  # 评估批量大小 / Evaluation batch size
+  eval_batch_size: 32
+
+  # 是否使用few-shot评估 / Use few-shot evaluation
+  few_shot: true
+
+  # Few-shot样本数 / Number of few-shot examples
+  num_shots: 5

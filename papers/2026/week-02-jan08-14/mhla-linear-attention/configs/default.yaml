@@ -1,0 +1,119 @@
+# ============================================================================
+# MHLA: Multi-Head Linear Attention — Default Training Configuration
+# MHLA: 多头线性注意力 — 默认训练配置
+# ============================================================================
+# Token级多头线性注意力模型训练配置
+# Token-level multi-head linear attention model training config
+# ============================================================================
+
+# 模型配置 / Model Configuration
+model:
+  # 模型规模 / Model size identifier
+  size: "base"
+
+  # 隐藏层维度 / Hidden dimension
+  hidden_dim: 768
+
+  # Transformer层数 / Number of transformer layers
+  num_layers: 12
+
+  # 注意力头数（token级多头）/ Number of attention heads (token-level multi-head)
+  num_heads: 12
+
+  # 每个token的投影头数 / Number of projection heads per token
+  # 这是MHLA的核心参数 / This is the core MHLA parameter
+  token_heads: 4
+
+  # 线性注意力核函数类型 / Linear attention kernel function type
+  # 可选: "elu_plus", "relu", "rff" (随机傅里叶特征)
+  # Options: "elu_plus", "relu", "rff" (random Fourier features)
+  kernel_type: "elu_plus"
+
+  # 特征维度（线性注意力的投影维度）/ Feature dimension (linear attention projection dim)
+  feature_dim: 64
+
+  # 词表大小 / Vocabulary size
+  vocab_size: 32000
+
+  # FFN中间层维度缩放因子 / FFN intermediate dimension scaling factor
+  ffn_scale: 4.0
+
+  # 最大序列长度 / Maximum sequence length
+  max_seq_len: 2048
+
+  # Dropout率 / Dropout rate
+  dropout: 0.1
+
+# 训练配置 / Training Configuration
+training:
+  # 批量大小 / Batch size
+  batch_size: 128
+
+  # 学习率 / Learning rate
+  learning_rate: 1.0e-4
+
+  # 最小学习率 / Minimum learning rate
+  min_lr: 1.0e-5
+
+  # 预热步数 / Warmup steps
+  warmup_steps: 1000
+
+  # 总训练步数 / Total training steps
+  max_steps: 300000
+
+  # 权重衰减 / Weight decay
+  weight_decay: 0.01
+
+  # 梯度裁剪 / Gradient clipping
+  grad_clip: 1.0
+
+  # 混合精度 / Mixed precision
+  precision: "bf16"
+
+  # 梯度累积步数 / Gradient accumulation steps
+  grad_accum_steps: 4
+
+  # 优化器 / Optimizer
+  optimizer: "adamw"
+
+  # AdamW beta参数 / AdamW beta parameters
+  beta1: 0.9
+  beta2: 0.999
+
+# 日志配置 / Logging Configuration
+logging:
+  # 日志目录 / Log directory
+  log_dir: "./logs/mhla"
+
+  # 日志间隔步数 / Log interval in steps
+  log_interval: 50
+
+  # 检查点保存间隔 / Checkpoint save interval
+  save_interval: 5000
+
+  # 评估间隔 / Evaluation interval
+  eval_interval: 2000
+
+  # WandB项目名 / WandB project name
+  wandb_project: "mhla-linear-attention"
+
+  # 启用TensorBoard / Enable TensorBoard
+  tensorboard: true
+
+# 评估配置 / Evaluation Configuration
+evaluation:
+  # 评估数据集 / Evaluation datasets
+  benchmarks:
+    - "wikitext103"
+    - "lambada"
+    - "hellaswag"
+    - "piqa"
+
+  # 生成时最大token数 / Max generation tokens
+  max_gen_tokens: 256
+
+  # 评估批量大小 / Evaluation batch size
+  eval_batch_size: 64
+
+  # 困惑度评估的stride / Perplexity evaluation stride
+  eval_stride: 512

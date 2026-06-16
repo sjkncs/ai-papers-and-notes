@@ -1,0 +1,78 @@
+# ============================================================================
+# Reasoning Geometry Analyzer - Default Configuration / 推理几何分析器默认配置
+# ============================================================================
+
+# 模型配置 / Model Configuration
+model:
+  # 要分析的模型列表 / Models to analyze
+  models:
+    - name: "llama-3-8b"
+      path: "meta-llama/Llama-3-8B"
+      params_b: 8
+    - name: "llama-3-70b"
+      path: "meta-llama/Llama-3-70B"
+      params_b: 70
+    - name: "llama-3-405b"
+      path: "meta-llama/Llama-3-405B"
+      params_b: 405
+  # 分析的层 / Layers to analyze
+  layer_range: [8, 16, 24, 32]
+  # 嵌入维度 / Embedding dimension
+  embed_dim: 4096
+
+# 推理路径配置 / Reasoning Path Configuration
+reasoning:
+  # 每领域推理样本数 / Reasoning samples per domain
+  samples_per_domain: 500
+  # 最大推理步数 / Maximum reasoning steps
+  max_steps: 20
+  # 思维路径采样温度 / Thought path sampling temperature
+  temperature: 0.7
+
+# 领域定义 / Domain Definitions
+domains:
+  - name: "mathematics"
+    label_zh: "数学推理"
+    prompts_file: "data/prompts/math.jsonl"
+  - name: "legal"
+    label_zh: "法律分析"
+    prompts_file: "data/prompts/legal.jsonl"
+  - name: "common_sense"
+    label_zh: "常识推理"
+    prompts_file: "data/prompts/common_sense.jsonl"
+  - name: "science"
+    label_zh: "科学推理"
+    prompts_file: "data/prompts/science.jsonl"
+
+# 几何分析配置 / Geometric Analysis Configuration
+geometry:
+  # 降维方法 / Dimensionality reduction method
+  method: "umap"
+  # UMAP参数 / UMAP parameters
+  n_neighbors: 30
+  min_dist: 0.1
+  n_components: 3
+  # 内在维度估计 / Intrinsic dimensionality estimation
+  id_method: "mle"  # maximum likelihood estimation
+  # 曲率计算 / Curvature computation
+  curvature_method: "sectional"
+  # 流形对齐 / Manifold alignment
+  alignment_method: "procrustes"
+
+# 训练和评估 / Training and Evaluation
+training:
+  batch_size: 16
+  num_workers: 4
+  device: "cuda"
+  precision: "fp16"
+  # 随机种子 / Random seed
+  seed: 42
+
+# 输出配置 / Output Configuration
+output:
+  # 结果保存目录 / Results directory
+  save_dir: "results/geometry"
+  # 可视化格式 / Visualization format
+  viz_format: ["png", "html"]
+  # 日志级别 / Log level
+  log_level: "INFO"
