@@ -1,0 +1,122 @@
+# ============================================================================
+# DepthDirector - Default Configuration / 深度导演默认配置
+# ============================================================================
+
+# 模型配置 / Model Configuration
+model:
+  # 基础视频生成模型 / Base video generation model
+  base_model: "stabilityai/stable-video-diffusion-img2vid-xt"
+  # 双流架构参数 / Dual-stream architecture parameters
+  dual_stream:
+    camera_hidden_dim: 1024
+    object_hidden_dim: 1024
+    fusion_layers: 4
+    cross_attention_heads: 8
+  # 深度编码器参数 / Depth encoder parameters
+  depth_encoder:
+    input_channels: 1
+    feature_channels: [64, 128, 256, 512]
+    output_dim: 1024
+  # LoRA配置 / LoRA configuration
+  lora:
+    rank: 16
+    alpha: 32
+    dropout: 0.05
+    target_modules:
+      - "attn.qkv"
+      - "attn.proj"
+      - "motion.conv"
+      - "camera.linear"
+
+# 相机控制配置 / Camera Control Configuration
+camera:
+  # 支持的相机运动类型 / Supported camera motion types
+  motions:
+    - "pan_left_right"
+    - "tilt_up_down"
+    - "dolly_in_out"
+    - "orbit"
+    - "crane"
+    - "free_trajectory"
+  # 相机参数范围 / Camera parameter ranges
+  fov_range: [30, 90]          # 视野角度范围（度）/ Field of view range (degrees)
+  translation_range: [-5, 5]   # 平移范围（米）/ Translation range (meters)
+  rotation_range: [-180, 180]  # 旋转范围（度）/ Rotation range (degrees)
+  # 轨迹采样 / Trajectory sampling
+  trajectory_fps: 30
+  max_duration_sec: 10
+
+# 视频生成配置 / Video Generation Configuration
+generation:
+  # 分辨率 / Resolution
+  width: 1024
+  height: 576
+  # 帧数 / Number of frames
+  num_frames: 25
+  # 推理步数 / Inference steps
+  num_inference_steps: 50
+  # CFG引导强度 / CFG guidance scale
+  guidance_scale: 7.5
+  # 深度一致性权重 / Depth consistency weight
+  depth_consistency_weight: 0.3
+  # 运动强度 / Motion strength
+  motion_bucket_id: 127
+
+# 数据配置 / Data Configuration
+data:
+  # 合成数据集路径 / Synthetic dataset path
+  synthetic_dataset:
+    root: "data/synthetic_ue5"
+    depth_dir: "depth_maps"
+    normal_dir: "normal_maps"
+    camera_dir: "camera_params"
+    video_dir: "videos"
+  # 数据增强 / Data augmentation
+  augmentation:
+    horizontal_flip: true
+    color_jitter: 0.1
+    random_crop_scale: [0.8, 1.0]
+
+# 训练配置 / Training Configuration
+training:
+  # 训练参数 / Training parameters
+  batch_size: 4
+  gradient_accumulation_steps: 8
+  learning_rate: 1.0e-4
+  weight_decay: 0.01
+  warmup_steps: 500
+  max_steps: 50000
+  # 深度损失权重 / Depth loss weight
+  depth_loss_weight: 0.5
+  # 运动一致性损失 / Motion consistency loss
+  motion_consistency_weight: 0.2
+  # 检查点 / Checkpoints
+  checkpoint_every: 5000
+  eval_every: 2000
+  # 混合精度 / Mixed precision
+  mixed_precision: "fp16"
+  # 设备 / Device
+  device: "cuda"
+  seed: 42
+
+# 评估配置 / Evaluation Configuration
+evaluation:
+  # 评估指标 / Evaluation metrics
+  metrics:
+    - "fvd"        # Fréchet Video Distance
+    - "fid"        # Fréchet Inception Distance
+    - "lpips"      # Learned Perceptual Image Patch Similarity
+    - "camera_err" # Camera parameter error
+    - "depth_err"  # Depth estimation error
+  # 评估数据集 / Evaluation datasets
+  eval_datasets:
+    - "data/eval/real_world"
+    - "data/eval/synthetic_heldout"
+  num_eval_samples: 500
+
+# 输出配置 / Output Configuration
+output:
+  save_dir: "results/depthdirector"
+  video_format: "mp4"
+  log_dir: "logs"
+  log_level: "INFO"

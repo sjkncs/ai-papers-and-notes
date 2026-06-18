@@ -1,0 +1,51 @@
+# ============================================================
+# Deep Delta Learning (DDL) — 默认训练配置
+# Default Training Configuration
+# ============================================================
+# 论文 / Paper: "Deep Delta Learning" (arXiv:2601.00417)
+# 作者 / Authors: Yifan Zhang, Yifeng Liu, Mengdi Wang, Quanquan Gu
+# ============================================================
+
+# 模型配置 / Model Configuration
+model:
+  vocab_size: 10000          # 词汇表大小 / Vocabulary size
+  d_model: 256               # 隐藏维度 / Hidden dimension
+  n_layers: 6                # Transformer层数 / Number of Transformer layers
+  n_heads: 4                 # 注意力头数 / Number of attention heads
+  d_ff: 1024                 # FFN中间维度 / FFN intermediate dimension (default: 4 * d_model)
+  max_seq_len: 512           # 最大序列长度 / Maximum sequence length
+  dropout: 0.1               # Dropout率 / Dropout rate
+  gate_init: 0.0             # DDL门控初始偏置 / DDL gate initial bias (0 = ~50% open)
+  use_pre_norm: true         # 是否使用Pre-LN / Whether to use Pre-LayerNorm
+
+# 训练配置 / Training Configuration
+training:
+  batch_size: 32             # 批次大小 / Batch size
+  learning_rate: 0.0003      # 学习率 / Learning rate (3e-4, standard for Transformers)
+  weight_decay: 0.01         # 权重衰减 / Weight decay (AdamW)
+  warmup_steps: 1000         # 预热步数 / Warmup steps for LR scheduler
+  max_steps: 50000           # 最大训练步数 / Maximum training steps
+  grad_clip: 1.0             # 梯度裁剪 / Gradient clipping max norm
+  seed: 42                   # 随机种子 / Random seed
+
+  # 学习率调度 / Learning rate scheduling
+  lr_scheduler: "cosine"     # 调度器类型 / Scheduler type: cosine | linear | constant
+  min_lr_ratio: 0.1          # 最小学习率比例 / Minimum LR as fraction of peak LR
+
+  # 数据配置 / Data Configuration
+  data_source: "synthetic"   # 数据源 / Data source: synthetic | wikitext2
+  synthetic_vocab: true      # 合成数据是否使用相同vocab / Use same vocab for synthetic data
+
+# 日志与检查点 / Logging & Checkpoints
+logging:
+  log_interval: 50           # 每隔N步打印日志 / Log every N steps
+  eval_interval: 500         # 每隔N步评估 / Evaluate every N steps
+  save_interval: 2000        # 每隔N步保存 / Save checkpoint every N steps
+  checkpoint_dir: "checkpoints"  # 检查点目录 / Checkpoint directory
+  log_dir: "logs"            # 日志目录 / Log directory
+
+# 评估配置 / Evaluation Configuration
+evaluation:
+  eval_batch_size: 64        # 评估批次大小 / Evaluation batch size
+  eval_steps: 100            # 评估步数 / Number of evaluation steps
+  compare_resnet: true       # 是否与标准ResNet对比 / Compare with standard ResNet residual
