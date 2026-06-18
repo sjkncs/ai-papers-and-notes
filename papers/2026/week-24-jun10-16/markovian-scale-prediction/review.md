@@ -8,6 +8,15 @@
 
 ---
 
+## 概念可视化 / Concept Visualization
+
+![Markovian Scale Prediction Concept](code/markovian_concept.png)
+
+> **图注 / Caption:** Markovian Scale Prediction 核心概念图。左侧展示 Full Context VAR 的全上下文依赖（所有先前尺度参与预测），右侧展示 Sliding Window MSP 的局部马尔可夫依赖（仅最近2个窗口）。中间为多尺度 Token 化流程（Scale 0→4），底部为性能对比：内存降低83.8%，FID提升10.5%。
+> Concept diagram of Markovian Scale Prediction. Left shows Full Context VAR's full-context dependency (all prior scales participate in prediction), right shows Sliding Window MSP's local Markov dependency (only the 2 most recent windows). Center shows multi-scale tokenization flow (Scale 0→4), bottom shows performance comparison: 83.8% memory reduction, 10.5% FID improvement.
+
+---
+
 ## Q1: 它真正想解决的问题是什么？/ What Problem Does It Actually Solve?
 
 **中文：**

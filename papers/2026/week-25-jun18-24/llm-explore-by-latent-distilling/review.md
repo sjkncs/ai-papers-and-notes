@@ -8,6 +8,15 @@
 
 ---
 
+## 概念可视化 / Concept Visualization
+
+![ESamp Concept](code/esamp_concept.png)
+
+> **图注 / Caption:** ESamp (Exploratory Sampling) 核心概念图。左侧为 Latent Distiller 架构：2层MLP（384 hidden dim），输入层接收浅层 Transformer 激活，输出层预测深层隐藏表示，训练目标为最小化预测误差（MSE）。中间为 Novelty Signal 计算流程：高预测误差→高新颖性信号→重加权 token logits→引导采样向未探索区域倾斜。右侧为异步训练-推理流水线：训练流持续更新 Distiller 参数，推理流使用当前 Distiller 进行前向传播，额外开销仅 0.3%~5%。
+> Core concept diagram of ESamp (Exploratory Sampling). Left shows Latent Distiller Architecture: 2-layer MLP (384 hidden dim), input layer receives shallow Transformer activations, output layer predicts deep hidden representations, trained with MSE loss. Center shows Novelty Signal computation flow: high prediction error → high novelty signal → reweighted token logits → biased sampling toward unexplored regions. Right shows asynchronous training-inference pipeline: training stream continuously updates Distiller parameters, inference stream uses current Distiller for forward pass, overhead only 0.3%~5%.
+
+---
+
 ## Q1: 它真正想解决的问题是什么？/ What Problem Does It Actually Solve?
 
 **中文：**

@@ -8,6 +8,15 @@
 
 ---
 
+## 概念可视化 / Concept Visualization
+
+![GRPO is PRM Concept](code/grpo_prm_concept.png)
+
+> **图注 / Caption:** "GRPO is Secretly a PRM" 核心概念图。左侧展示标准 GRPO：组内归一化的 advantage 计算 A = R − mean(R)/std(R)，此前被认为仅利用结果级奖励。中间为定理1等价性证明：L_GRPO = L_PRM，展示 GRPO 的组归一化如何隐式实现蒙特卡洛 PRM 估计。右侧为 λ-GRPO 改进：引入可调参数 λ 控制奖励塑形，Qwen-1.5B 准确率从 48.37% 提升至 55.76%。底部展示训练动态曲线：GRPO 损失收敛至 PRM-aware 目标的过程。
+> Core concept diagram of "GRPO is Secretly a PRM". Left shows Standard GRPO: within-group normalized advantage computation A = R − mean(R)/std(R), previously thought to only utilize outcome-level rewards. Center shows Theorem 1 equivalence proof: L_GRPO = L_PRM, demonstrating how GRPO's group normalization implicitly implements Monte-Carlo PRM estimation. Right shows λ-GRPO improvement: tunable λ parameter for reward shaping, Qwen-1.5B accuracy improves from 48.37% to 55.76%. Bottom shows training dynamics: GRPO loss converging toward the PRM-aware objective.
+
+---
+
 ## Q1: 它真正想解决的问题是什么？/ What Problem Does It Actually Solve?
 
 **中文：**

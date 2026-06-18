@@ -8,6 +8,15 @@
 
 ---
 
+## 概念可视化 / Concept Visualization
+
+![Societies of Thought Concept](code/societies_thought_concept.png)
+
+> **图注 / Caption:** "Societies of Thought" 核心概念图。顶部时间线展示三大贡献维度：单一LLM内部多智能体架构（蓝）、对话式支架（绿）、机制可解释性（紫）。左侧展示 LLM 内部多智能体通信拓扑（Agent A/B/C 各自拥有记忆和推理模块）。中间为对话式支架流程图：输入→支架提示→多智能体推理→综合输出，并在数学QA任务上提升12.4%。右侧展示注意力可视化与性能增益对比（准确率、连贯性、效率、鲁棒性、泛化能力均显著提升）。
+> Core concept diagram of "Societies of Thought". Top timeline shows three contribution dimensions: Single LLM Internal Multi-Agent Architecture (blue), Conversational Scaffolding (green), Mechanistic Interpretability (purple). Left shows LLM internal multi-agent communication topology (Agent A/B/C each with memory and reasoning modules). Center shows conversational scaffolding flow: Input → Scaffold Prompt → Multi-Agent Reasoning → Output, with +12.4% improvement on Math QA. Right shows attention visualization and performance gains comparison (significant improvements in accuracy, coherence, efficiency, robustness, and generalization).
+
+---
+
 ## Q1: 它真正想解决的问题是什么？/ What Problem Does It Actually Solve?
 
 **中文：**

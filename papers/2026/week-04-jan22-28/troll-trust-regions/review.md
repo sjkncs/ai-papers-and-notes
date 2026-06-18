@@ -8,6 +8,15 @@
 
 ---
 
+## 概念可视化 / Concept Visualization
+
+![TROLL Trust Region Concept](code/troll_concept.png)
+
+> **图注 / Caption:** TROLL 核心概念图。上半部分对比 PPO Clipping（粗糙的比率截断）与 TROLL Trust Region（基于 KL 散度的精确约束）。左下展示概率比率空间中的约束边界可视化。右下展示 Sparse Important Token (SIT) 模型——投影仅作用于最重要的 token 子集。右侧韦恩图展示 PPO Clipping 与 TROLL Trust Region 的约束覆盖关系。TROLL 在训练稳定性上提升 44.3%。
+> Core concept diagram of TROLL. Top compares PPO Clipping (coarse ratio clipping) vs. TROLL Trust Region (precise KL-based constraints). Bottom-left visualizes constraint boundaries in probability ratio space. Bottom-right shows Sparse Important Token (SIT) model — projection operates only on the most important token subset. Right Venn diagram shows constraint coverage relationship between PPO Clipping and TROLL Trust Region. TROLL achieves 44.3% improvement in training stability.
+
+---
+
 ## Q1: 它真正想解决的问题是什么？/ What Problem Does It Actually Solve?
 
 **中文：**
