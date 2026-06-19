@@ -8,6 +8,15 @@
 
 ---
 
+## 概念可视化 / Concept Visualization
+
+![Thinking with Video Concept](code/thinking_video_concept.png)
+
+> **图注 / Caption:** "Thinking with Video" 核心概念图。左侧展示"视频生成即推理"范式：文本查询→视频生成模型→视频帧推理链→最终答案。中间为 VideoThinkBench 评测集的五大类任务（空间推理、时间逻辑、因果推断、反事实思维等）。右侧为纯文本 CoT 与视频 CoT 的量化对比，视频方法在时间连贯性（92.4 vs 87.2）、视觉一致性（91.7 vs 85.1）、答案准确率（84.2 vs 78.3）等维度上全面领先。
+> Core concept diagram of "Thinking with Video". Left shows the "Video Generation as Reasoning" paradigm: text query → video generation model → video frame reasoning chain → final answer. Center shows VideoThinkBench's five task categories (spatial reasoning, temporal logic, causal inference, counterfactual thinking, etc.). Right shows quantitative comparison of Text-only CoT vs. Video CoT, where Video CoT leads across temporal coherence (92.4 vs 87.2), visual consistency (91.7 vs 85.1), and answer accuracy (84.2 vs 78.3).
+
+---
+
 ## Q1: 它真正想解决的问题是什么？/ What Problem Does It Actually Solve?
 
 **中文：**
