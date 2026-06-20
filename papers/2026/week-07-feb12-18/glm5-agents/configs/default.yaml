@@ -1,0 +1,26 @@
+# GLM-5 Agents 配置
+model:
+  name: glm-5
+  architecture: hybrid_transformer
+  total_params: 130B
+  active_params: 12B
+
+dsa:
+  type: dynamic_sparse_attention
+  sparsity_ratio: 0.7
+  block_size: 64
+  max_seq_len: 128000
+
+rl:
+  type: async_grpo
+  async_mode: true
+  generation_workers: 8
+  update_workers: 2
+  learning_rate: 0.00001
+  batch_size: 256
+  max_steps: 100000
+
+agent:
+  max_tool_calls: 50
+  max_horizon_steps: 200
+  tools: [code_interpreter, web_search, file_system, terminal, api_call]

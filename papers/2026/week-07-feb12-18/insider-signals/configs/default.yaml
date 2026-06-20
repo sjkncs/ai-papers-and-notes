@@ -1,0 +1,31 @@
+# Insider Signals 配置
+data:
+  n_stocks: 200
+  market_cap_range: [30, 500]  # millions USD
+  n_days: 1500
+  insider_roles: [CEO, CFO, Director, VP, Other]
+
+features:
+  - dist_from_52w_high
+  - dist_from_52w_low
+  - price_position_52w
+  - past_6m_return
+  - insider_role_score
+  - trade_type
+  - trade_value_ratio
+  - past_12m_buys
+  - log_market_cap
+  - log_volume
+
+model:
+  type: gradient_boosting
+  n_estimators: 100
+  learning_rate: 0.1
+  max_depth: 3
+  min_samples_leaf: 10
+
+strategy:
+  top_k: 20
+  holding_period: 30  # days
+  rebalance_freq: monthly
+  transaction_cost: 0.005  # microcap slippage
