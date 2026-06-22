@@ -1,12 +1,24 @@
-# Week 25: 2026-06-17 — 2026-06-23 / 第25周
+# Week 25: 2026-06-18 — 2026-06-24 / 第25周
 
 ---
 
 ## 本周学术动态 / Weekly Highlights
 
-**中文：** 2026年第25周正值ICML 2026论文预览高峰期（会议将于7月召开），大量接受论文的预印本开始在arXiv上密集释放。本周核心亮点包括：(1) ICML 2026理论突破——GRPO被严格证明等价于隐式过程奖励模型(PRM)，并提出λ-GRPO改进；(2) ESamp解码方法通过潜空间蒸馏实现test-time语义探索，在AIME25上将Pass@16提升1.4个百分点；(3) CEO-Bench揭示当前SOTA agent在长期战略决策中的严重缺陷；(4) 数据驱动的长上下文RL新范式——仅需14K示例和极简GRPO即可显著提升长上下文推理；(5) GraphPO将推理路径建模为DAG，在Qwen2.5-7B上平均准确率达40.9%。arXiv方面，JetFlow突破推测解码的扩展瓶颈、Sumi开源扩散语言模型、以及多模态agent评测密集出现。
+**中文：** 2026 年第 25 周是 ICML 2026 预印本预览与 CVPR 2026 会后 arXiv 释放叠加的高峰期。仅 6 月 18–19 日两天，cs.CV / cs.LG / cs.AI / cs.CL / stat.ML 五个类别就新增约 480 篇论文。本周核心亮点包括：
+1. **GRPO 的理论解密**：ICML 2026 论文 *GRPO is Secretly a Process Reward Model* 严格证明 GRPO 等价于隐式蒙特卡洛 PRM，并提出 λ-GRPO 改进；
+2. **Test-time 语义探索**：ICML 2026 论文 *Large Language Models Explore by Latent Distilling* 提出 ESamp，用浅层到深层的预测误差作为新颖性信号引导解码，AIME25 Pass@16 提升 1.4 个百分点；
+3. **长期战略 Agent 评测**：*CEO-Bench* 模拟企业 CEO 决策，揭示当前 SOTA Agent 在长期动态环境中的严重缺陷；
+4. **视觉 AR 生成的空间并行突破**：*SSD* 提出空间投机解码，把自回归图像生成的理论复杂度从 O(n²) 降到 O(n)，最高 13.3× 加速；
+5. **世界模型持久状态诊断**：*Current World Models Lack a Persistent State Core* 发布 WRBench，发现当前模型在目标离开视野后不会继续演化其状态；
+6. **推理效率的 token 级解耦**：*ADaPT* 用 `<think>` / `<answer>` mode-selection token 将效率与正确性信号解耦，实现连续可控的快慢思考。
 
-**English:** Week 25 of 2026 was the peak preview period for ICML 2026 (conference in July), with accepted papers densely releasing preprints on arXiv. Key highlights: (1) ICML 2026 theoretical breakthrough — GRPO rigorously proven equivalent to an implicit Process Reward Model (PRM), with λ-GRPO improvement proposed; (2) ESamp decoding achieves test-time semantic exploration via latent distilling, improving Pass@16 on AIME25 by 1.4 points; (3) CEO-Bench reveals severe deficiencies in current SOTA agents' long-term strategic decision-making; (4) Data-driven long-context RL paradigm — only 14K examples with minimal GRPO substantially improves long-context reasoning; (5) GraphPO models reasoning paths as DAGs, achieving 40.9% average accuracy on Qwen2.5-7B. On arXiv, JetFlow breaks speculative decoding scaling ceilings, Sumi open-source diffusion language model, and multimodal agent benchmarks densely appear.
+**English:** Week 25 of 2026 is a superposition of the ICML 2026 preprint preview peak and the post-CVPR 2026 arXiv release wave. In just two days (June 18–19), approximately 480 new papers appeared across cs.CV, cs.LG, cs.AI, cs.CL, and stat.ML. Key highlights:
+1. **Theoretical decryption of GRPO**: the ICML 2026 paper *GRPO is Secretly a Process Reward Model* rigorously proves GRPO is equivalent to an implicit Monte-Carlo PRM and proposes λ-GRPO;
+2. **Test-time semantic exploration**: the ICML 2026 paper *Large Language Models Explore by Latent Distilling* proposes ESamp, using shallow-to-deep prediction error as a novelty signal to guide decoding, improving AIME25 Pass@16 by 1.4 points;
+3. **Long-horizon strategic agent evaluation**: *CEO-Bench* simulates corporate CEO decision-making and reveals severe deficits in current SOTA agents in dynamic long-term environments;
+4. **Spatial-parallel breakthrough for visual AR generation**: *SSD* proposes spatial speculative decoding, reducing the theoretical complexity of autoregressive image generation from O(n²) to O(n) with up to 13.3× speedup;
+5. **Persistent-state diagnosis for world models**: *Current World Models Lack a Persistent State Core* introduces WRBench and finds that current models do not evolve object states while unobserved;
+6. **Token-level decoupling for reasoning efficiency**: *ADaPT* uses `<think>` / `<answer>` mode-selection tokens to decouple efficiency and correctness signals, enabling continuously controllable fast/slow thinking.
 
 ---
 
@@ -14,79 +26,111 @@
 
 | # | 论文 / Paper | 方向 / Area | 审稿分析 / Review | 代码复现 / Code |
 |---|---|---|---|---|
-| 1 | [GRPO is Secretly a Process Reward Model](https://arxiv.org/abs/2509.21154) | RL Theory | [review.md](grpo-is-prm/review.md) | — |
-| 2 | [Large Language Models Explore by Latent Distilling](https://arxiv.org/abs/2604.24927) | LLM Decoding | [review.md](llm-explore-by-latent-distilling/review.md) | [code/](llm-explore-by-latent-distilling/code/) |
-| 3 | [CEO-Bench: Can Agents Play the Long Game?](https://arxiv.org/abs/2606.18543) | Agents Eval | [review.md](ceo-bench/review.md) | — |
+| 1 | [GRPO is Secretly a Process Reward Model](https://arxiv.org/abs/2509.21154) | ML Theory / RL | [review.md](grpo-is-prm/review.md) | — |
+| 2 | [Large Language Models Explore by Latent Distilling](https://arxiv.org/abs/2604.24927) | LLM Decoding / Test-Time Compute | [review.md](llm-explore-by-latent-distilling/review.md) | [code/](llm-explore-by-latent-distilling/code/) |
+| 3 | [CEO-Bench: Can Agents Play the Long Game?](https://arxiv.org/abs/2606.18543) | Agents / Evaluation | [review.md](ceo-bench/review.md) | — |
+| 4 | [SSD: Spatially Speculative Decoding Accelerates Autoregressive Image Generation](https://arxiv.org/abs/2606.20543) | CV / Systems | [review.md](ssd-spatially-speculative-decoding/review.md) | [code/](ssd-spatially-speculative-decoding/code/) |
+| 5 | [Current World Models Lack a Persistent State Core](https://arxiv.org/abs/2606.20545) | CV / World Models | [review.md](current-world-models-persistent-state/review.md) | — |
+| 6 | [ADaPT: Token-Level Decoupling for Efficient Large Reasoning Models](https://arxiv.org/abs/2606.19919) | NLP & LLM / Efficient Reasoning | [review.md](adapt-token-level-decoupling/review.md) | — |
 
 ---
 
 ## 本周论文列表（按领域分类）/ Weekly Papers by Area
 
+> 本周 arXiv 五个主要类别新增约 480 篇论文（announcement dates: 18–19 Jun 2026），叠加 ICML 2026 预印本释放。以下按领域精选代表性工作，并附简短要点。
+
+> This week saw approximately 480 new papers across five main arXiv categories (announcement dates: 18–19 Jun 2026),叠加 the ICML 2026 preprint release. Representative works by area are listed below with brief key points.
+
 ### 机器学习理论 / ML Theory
 
 | 论文 / Paper | 要点 / Key Point |
 |---|---|
-| **GRPO is Secretly a Process Reward Model** | ICML 2026。严格证明GRPO等价于隐式蒙特卡洛PRM，提出λ-GRPO解决步骤频率不平衡。Qwen-1.5B准确率从48.37%提升至55.76%。 |
-| **Large Language Models Explore by Latent Distilling** | ICML 2026。ESamp通过潜空间蒸馏预测误差引导语义探索，AIME25 Pass@16达31.7%，开销<5%。 |
-| **What Characterizes Effective Reasoning? Revisiting CoT** | ICML 2026。重新审视思维链长度、回顾和结构对推理效果的影响 |
-| **Position: We Need A Unified Definition of Hallucination** | ICML 2026。主张幻觉的本质是世界模型缺陷 |
-| **Low-dimensional Topology of Deep Neural Networks** | ICML 2026。深度神经网络的低维拓扑结构分析 |
-| **On the Residual Scaling of Looped Transformers** | arXiv。循环Transformer的稳定性与可迁移性 |
-| **Effects of Sparsity and Superposition on Loss** | arXiv。稀疏性与叠加对简单自编码器损失的影响 |
-| **A Link between Shock-wave Theory and SGD** | arXiv。激波理论与SGD的对称约化联系 |
+| **[GRPO is Secretly a Process Reward Model](https://arxiv.org/abs/2509.21154)** | ICML 2026。严格证明 GRPO 等价于隐式蒙特卡洛 PRM，提出 λ-GRPO 解决步骤频率不平衡。Qwen-1.5B 准确率从 48.37% 提升至 55.76%。 |
+| **What Characterizes Effective Reasoning? Revisiting CoT** | ICML 2026。重新审视思维链长度、回顾和结构对推理效果的影响。 |
+| **Position: We Need A Unified Definition of Hallucination** | ICML 2026。主张幻觉的本质是世界模型缺陷。 |
+| **Low-dimensional Topology of Deep Neural Networks** | ICML 2026。深度神经网络的低维拓扑结构分析。 |
+| **Optimal Deterministic Multicalibration and Omniprediction** | arXiv。最优确定性多校准与全能预测。 |
+| **On the Oracle Complexity of Interpolation-Based Gradient Descent** | arXiv。基于插值的梯度下降 oracle 复杂度。 |
+| **Quantile of Means: A Bonus-Free Ensemble Method for Minimax Optimal Reinforcement Learning** | arXiv。均值分位数：无 bonus 的集成方法达到极小极大最优 RL。 |
+| **Fisher-Geometric Sharpness and the Implicit Bias of SGD toward Flat Minima** | arXiv。Fisher-几何锐度与 SGD 向平坦极小值的隐式偏置。 |
+| **Sparsity, Superposition, and Forgetting: A Mechanistic Study of Representation Retention in Continual Learning** | arXiv。持续学习表示保留的机制研究。 |
 
-### 大语言模型与推理 / LLM & Reasoning
-
-| 论文 / Paper | 要点 / Key Point |
-|---|---|
-| **GraphPO: Graph-based Policy Optimization for Reasoning Models** | arXiv。将推理路径建模为DAG，语义等价路径共享后缀。Qwen2.5-7B数学基准达40.9%。 |
-| **Beyond Reward Engineering: A Data Recipe for Long-Context RL** | arXiv。14K示例极简GRPO提升长上下文推理，Qwen3平均提升+7.2/+3.2/+6.4点。 |
-| **JetFlow: Breaking the Scaling Ceiling of Speculative Decoding** | arXiv。并行树状起草突破推测解码扩展瓶颈 |
-| **Self-CTRL: Self-Consistency Training with RL** | arXiv。自一致性训练的强化学习方法 |
-| **LLMZero: Discovering Adaptive Training Strategies for RL Post-Training via LLM Agents** | arXiv。LLM Agent自动发现RL后训练策略 |
-| **RegMix-D: Dynamic Data Mixing via Proxy Training Trajectories** | arXiv。基于代理训练轨迹的动态数据混合 |
-| **Sumi: Open Uniform Diffusion Language Model from Scratch** | arXiv。从零训练的开源统一扩散语言模型 |
-| **Good SFT Optimizes for SFT, Better SFT Prepares for RL** | ICML 2026。SFT与RL的关系再思考 |
-| **Reliability-Aware LLM Alignment from Inconsistent Human Feedback** | ICML 2026。从不一致人类反馈中进行可靠性感知对齐 |
-
-### 智能体与评测 / Agents & Evaluation
+### 自然语言处理与大模型 / NLP & LLM
 
 | 论文 / Paper | 要点 / Key Point |
 |---|---|
-| **CEO-Bench: Can Agents Play the Long Game?** | arXiv。CEO战略决策模拟评测，仅Claude Opus 4.8和GPT-5.5能保持不亏损。 |
-| **Decoupling Search from Reasoning: Vendor-Agnostic Grounding for LLM Agents** | arXiv。搜索与推理解耦的LLM Agent架构 |
-| **Towards an Agent-First Web: Redesigning the Web for AI Agents** | arXiv。为AI Agent重新设计Web的愿景 |
-| **CEO-Bench: Can Agents Play the Long Game?** | arXiv。CEO战略决策模拟评测 |
-| **VISUALSKILL: Multimodal Skills for Computer-Use Agents** | arXiv。多模态技能赋能电脑使用agent |
-| **Skill-Guided Continuation Distillation for GUI Agents** | arXiv。技能引导的GUI Agent连续蒸馏 |
-| **SAGE: Stochastic Prompt Optimization via Agent-Guided Exploration** | arXiv。Agent引导探索的随机提示优化 |
-| **CoreMem: Riemannian Retrieval for Long-Term Memory in Dialogue Agents** | arXiv。黎曼检索实现对话agent长期记忆 |
-| **ProfiLLM: Utility-Aligned Agentic User Profiling** | arXiv。效用对齐的agent用户画像 |
-| **Towards Scalable Customization of Multi-Agent Systems** | arXiv。多智能体系统的可扩展定制 |
+| **[Large Language Models Explore by Latent Distilling](https://arxiv.org/abs/2604.24927)** | ICML 2026。ESamp 通过潜空间蒸馏预测误差引导语义探索，AIME25 Pass@16 达 31.7%，开销 <5%。 |
+| **[ADaPT: Token-Level Decoupling for Efficient Large Reasoning Models](https://arxiv.org/abs/2606.19919)** | token 级快慢思考解耦，推理时连续控制效率-性能权衡。 |
+| **GraphPO: Graph-based Policy Optimization for Reasoning Models** | 将推理路径建模为 DAG，语义等价路径共享后缀。Qwen2.5-7B 数学基准达 40.9%。 |
+| **Beyond Reward Engineering: A Data Recipe for Long-Context RL** | 14K 示例极简 GRPO 提升长上下文推理，Qwen3 平均提升 +7.2/+3.2/+6.4 点。 |
+| **Multi-Task Bayesian In-Context Learning** | 多任务贝叶斯上下文学习框架。 |
+| **UltraQuant: 4-bit KV Caching for Context-Heavy Agents** | 面向长上下文 Agent 的 4-bit KV Cache 量化。 |
+| **VIMPO: Value-Implicit Policy Optimization for LLMs** | 隐式值策略优化用于 LLM。 |
+| **Manifold Bandits: Bayesian Curriculum Learning over the Latent Geometry of LLMs** | 流形 bandit 做 LLM 潜在几何上的课程学习。 |
+| **Algebraic Dead Directions in LayerNorm Transformers** | LayerNorm Transformer 中的代数死亡方向。 |
+| **Concept Flow Models: Anchoring Concept-Based Reasoning with Hierarchical Bottlenecks** | 概念流模型：用层次瓶颈锚定概念推理。 |
+
+### 智能体与强化学习 / Agents & RL
+
+| 论文 / Paper | 要点 / Key Point |
+|---|---|
+| **[CEO-Bench: Can Agents Play the Long Game?](https://arxiv.org/abs/2606.18543)** | CEO 战略决策模拟评测，仅 Claude Opus 4.8 和 GPT-5.5 能保持不亏损。 |
+| **MetaResearcher: Scaling Deep Research via Self-Reflective Reinforcement Learning** | 对抗虚拟环境中的自反思 RL 扩展深度研究 Agent。 |
+| **ScaffoldAgent: Utility-Guided Dynamic Outline Optimization for Open-Ended Deep Research** | 效用引导的动态大纲优化用于开放式深度研究。 |
+| **Process-Verified Reinforcement Learning for Theorem Proving via Lean** | 通过 Lean 进行过程验证的定理证明 RL。 |
+| **AgentArmor: A Framework, Evaluation, & Mitigation of Coding Agent Failures** | 编码 Agent 故障的框架、评测与缓解。 |
+| **LedgerAgent: Structured State for Policy-Adherent Tool-Calling Agents** | 结构化状态保证工具调用 Agent 遵循策略。 |
+| **Sovereign Execution Brokers: Enforcing Certificate-Bound Authority in Agentic Control Planes** | 在 Agent 控制平面强制执行证书绑定权限。 |
+| **Benchmarking Agentic Review Systems** | Agentic 审稿系统基准。 |
+| **Decoupling Search from Reasoning: Vendor-Agnostic Grounding for LLM Agents** | 搜索与推理解耦的 LLM Agent 架构。 |
+| **VISUALSKILL: Multimodal Skills for Computer-Use Agents** | 多模态技能赋能电脑使用 agent。 |
 
 ### 计算机视觉 / Computer Vision
 
 | 论文 / Paper | 要点 / Key Point |
 |---|---|
-| **End-to-End Training for Unified Tokenization and Latent Denoising (UNITE)** | ICML 2026。统一tokenization和潜在去噪的端到端训练，ImageNet FID 2.12/1.73，成本比DINO方法低15倍。 |
-| **Self-Supervised Flow Matching (Self-Flow)** | ICML 2026。自监督流匹配范式，将表示学习融入生成框架 |
-| **Pixel MeanFlow (pMF)** | ICML 2026。像素均值流直接图像合成 |
-| **Data-Forcing Distillation: Restoring Diversity in Few-Step Video Gen** | arXiv。数据强制蒸馏恢复少步视频生成多样性 |
-| **UniTemp: Unlocking Video Generation in Any Temporal Order** | arXiv。双向蒸馏实现任意时序视频生成 |
-| **MolmoMotion: Forecasting 3D Point Trajectories with Language** | arXiv。语言指令引导的3D点轨迹预测 |
-| **SpectralDiT: Timestep-Conditioned Spectral Residual Correction** | arXiv。时间步条件谱残差校正流匹配DiT |
-| **Real-Time Physics Simulation with Dynamic Mesh-Gaussian Reconstructions** | arXiv。动态网格-高斯重建实时物理模拟 |
-| **HiGS: Hierarchical Rendering for Real-Time 3D Gaussian Splatting** | arXiv。分层实时3DGS渲染架构 |
+| **[SSD: Spatially Speculative Decoding Accelerates Autoregressive Image Generation](https://arxiv.org/abs/2606.20543)** | 空间投机解码，AR 图像生成最高 13.3× 加速。 |
+| **[Current World Models Lack a Persistent State Core](https://arxiv.org/abs/2606.20545)** | WRBench 诊断世界模型持久状态核心，揭示目标离屏后状态不演化。 |
+| **JanusMesh: Fast and Zero-Shot 3D Visual Illusion Generation via Cross-Space Denoising** | ECCV 2026。跨空间去噪实现零样本 3D 视觉错觉生成。 |
+| **End-to-End Training for Unified Tokenization and Latent Denoising (UNITE)** | ICML 2026。统一 tokenization 和潜在去噪的端到端训练，ImageNet FID 2.12/1.73。 |
+| **Self-Supervised Flow Matching (Self-Flow)** | ICML 2026。自监督流匹配范式，将表示学习融入生成框架。 |
+| **TimeProVe: Propose, then Verify for Efficient Long Video Temporal Reasoning** | 长视频时序推理：先提议再验证。 |
+| **Thinking in Boxes: 3D Editing in Real Images Made Easy** | 真实图像 3D 编辑。 |
+| **HumanScale: Egocentric Human Video Can Outperform Real-Robot Data for Embodied Pretraining** | 第一人称人体视频可超越真机数据做具身预训练。 |
+| **The FID Lottery: Quantifying Hidden Randomness in Generative-Model Evaluation** | 量化生成模型评估中 FID 的隐藏随机性。 |
+| **HiGS: Hierarchical Rendering for Real-Time 3D Gaussian Splatting** | 分层实时 3DGS 渲染架构。 |
 
-### 多模态与系统 / Multimodal & Systems
+### 系统与高效推理 / Systems
 
 | 论文 / Paper | 要点 / Key Point |
 |---|---|
-| **NAVI-Orbital: Zero-Shot VLM for Autonomous Earth Observation** | arXiv。首个在轨零样本视觉语言模型自主地球观测 |
-| **Beyond Prediction: Tail-Aware Scheduling for LLM Inference** | arXiv。尾部感知LLM推理调度 |
-| **Continuous Audio Thinking for Large Audio Language Models** | arXiv。大型音频语言模型的连续音频思维 |
-| **Hyper-ICL: Hyperbolic Anchor Distillation for Multimodal ICL** | ICML 2026。双曲锚点蒸馏提升多模态上下文学习 |
-| **PragReST: Self-Reinforcing Counterfactual Reasoning for Pragmatic Language Understanding** | arXiv。自增强反事实推理用于语用语言理解 |
+| **JetFlow: Breaking the Scaling Ceiling of Speculative Decoding** | 并行树状起草突破推测解码扩展瓶颈。 |
+| **Execution-State Capsules: Graph-Bound Execution-State Checkpoint and Restore** | 物理 AI 端侧低延迟服务的执行状态胶囊。 |
+| **StreamKL: Fast and Memory-Efficient KL Divergence for Boosting Attention Distillation** | 快速内存高效的 KL 散度用于注意力蒸馏。 |
+| **LOKI: Memory-Free Null-Space Constrained Lifelong Knowledge Editing** | 零内存零空间约束的终身知识编辑。 |
+| **CacheWeaver: Cache-Aware Evidence Ordering for Efficient Grounded RAG Inference** | 缓存感知的证据排序用于高效 Grounded RAG。 |
+| **Quantum ring all-reduce: communication and privacy advantages for distributed learning** | 量子环 all-reduce 的通信与隐私优势。 |
+| **Beyond Prediction: Tail-Aware Scheduling for LLM Inference** | 尾部感知 LLM 推理调度。 |
+
+### 机器人学与具身智能 / Robotics & Embodied AI
+
+| 论文 / Paper | 要点 / Key Point |
+|---|---|
+| **ENPIRE: Agentic Robot Policy Self-Improvement in the Real World** | 真实世界中的 Agentic 机器人策略自改进。 |
+| **Reward as An Agent for Embodied World Models** | 将奖励建模为具身世界模型中的 Agent。 |
+| **HumanScale: Egocentric Human Video Can Outperform Real-Robot Data for Embodied Pretraining** | 第一人称人体视频可超越真机数据做具身预训练。 |
+| **Frequency-Aware Flow Matching for Continuous and Consistent Robotic Action Generation** | 频率感知的流匹配用于连续一致机器人动作生成。 |
+| **FlowMaps: Modeling Long-Term Multimodal Object Dynamics with Flow Matching** | 用流匹配建模长期多模态物体动力学。 |
+| **Data Standards for Humanoid Robotics: The Missing Infrastructure for Physical AI** | 人形机器人数据标准：物理 AI 缺失的基础设施。 |
+| **Physical Atari: A Robust and Accessible Platform for Real-time RL on Robots** | 物理 Atari：机器人实时 RL 的鲁棒可及平台。 |
+
+### 多模态 / Multimodal
+
+| 论文 / Paper | 要点 / Key Point |
+|---|---|
+| **NAVI-Orbital: Zero-Shot VLM for Autonomous Earth Observation** | 首个在轨零样本视觉语言模型自主地球观测。 |
+| **Continuous Audio Thinking for Large Audio Language Models** | 大型音频语言模型的连续音频思维。 |
+| **Hyper-ICL: Hyperbolic Anchor Distillation for Multimodal ICL** | ICML 2026。双曲锚点蒸馏提升多模态上下文学习。 |
 
 ---
 
@@ -94,37 +138,37 @@
 
 **中文：**
 
-1. **GRPO的理论解密时代来临 / The Era of GRPO Theoretical Decryption Arrives**
-   本文证明GRPO隐式实现了PRM，这是一个颠覆性发现——社区一直以为GRPO"不需要过程标注"，但事实证明它只是以非平凡方式自动构建了过程监督。这意味着：(a) GRPO的上限可能受限于其蒙特卡洛PRM的估计质量；(b) 显式PRM和GRPO之间的选择不再是"标注成本 vs. 性能"的简单权衡，而是"隐式估计质量 vs. 显式标注精度"的技术判断。
+1. **GRPO 的理论解密时代来临 / The Era of GRPO Theoretical Decryption Arrives**
+   *GRPO is Secretly a PRM* 证明 GRPO 隐式实现了 PRM，这意味着 GRPO 的上限可能受限于其蒙特卡洛 PRM 估计质量，而显式 PRM 与 GRPO 的选择将变成“隐式估计质量 vs. 显式标注精度”的技术判断。
 
-2. **Test-Time Compute 的"探索-利用"新维度 / New "Explore-Exploit" Dimension for Test-Time Compute**
-   ESamp揭示了test-time scaling的一个关键盲区：现有的方法（Best-of-N、MCTS、Speculative Decoding）都在"如何利用已有知识"上做文章，而ESamp首次系统性地解决了"如何在生成过程中发现新知识"。将Distiller的在线训练与主模型推理解耦的架构设计，对test-time系统方向的工程实践具有直接参考价值。
+2. **Test-Time Compute 的“探索-利用”新维度 / New Explore-Exploit Dimension for Test-Time Compute**
+   ESamp 与 ADaPT 共同指向一个趋势：test-time scaling 不再只是“生成更多候选并挑选”，而是“在生成过程中动态决定思考深度”和“引导模型探索语义上未见的区域”。
 
-3. **Agent评测的"长期主义"转向 / The "Long-termism" Turn in Agent Evaluation**
-   CEO-Bench与GAIA、SWE-bench等基准形成鲜明对照——后者问"agent能否完成这个任务"，前者问"agent能否在动态环境中持续做出有利决策"。这标志着agent评测从"任务完成度"向"生存适应性"的范式转移。如果这一方向得到扩展，可能会出现类似"Agent Turing Test"的长期生存挑战。
+3. **Agent 评测从任务完成走向长期生存 / Agent Evaluation Shifts from Task Completion to Long-Term Survival**
+   CEO-Bench 与本周大量 Agent 评测论文说明，社区正从“能否完成这个任务”转向“能否在动态环境中持续做出有利决策”。
 
-4. **数据配方（Data Recipe）取代奖励工程 / Data Recipes Replacing Reward Engineering**
-   "Beyond Reward Engineering"和CEO-Bench共同指向一个趋势：RL训练的效果瓶颈可能不在奖励函数设计，而在训练数据的构造。14K精心筛选的示例就能超越复杂的奖励工程，这对RL研究的方法论有深远影响。
+4. **视觉 AR 生成进入空间并行时代 / Visual AR Generation Enters the Spatial-Parallel Era**
+   SSD 把自回归视觉生成从 1D raster-scan 转向 2D 空间投机解码。如果与 VAR/MAR 等原生 2D 表示结合，扩散模型在图像生成中的主导地位可能真正受到挑战。
 
-5. **推理路径的图结构化表示兴起 / Rise of Graph-Structured Reasoning Path Representations**
-   GraphPO将推理过程表示为DAG，通过语义等价类合并和双组图优势估计优化策略。这代表了从"链式思维"到"图式思维"的重要演进，可能启发后续工作探索更复杂的推理拓扑（如循环推理、概率图推理）。
+5. **世界模型从“看起来像”走向“演得像” / World Models Move from Looking Right to Evolving Right**
+   WRBench 把“持久状态核心”推上议程，世界模型评测将从帧级 fidelity 转向状态级因果一致性，催生更多显式状态记忆与物理引擎耦合的工作。
 
 **English:**
 
 1. **The Era of GRPO Theoretical Decryption Arrives**
-   This paper proves GRPO implicitly implements PRM, a disruptive finding — the community had assumed GRPO "doesn't need process annotations," but in fact it automatically constructs process supervision in a non-trivial way. This means: (a) GRPO's ceiling may be limited by its Monte-Carlo PRM estimation quality; (b) the choice between explicit PRM and GRPO is no longer a simple "annotation cost vs. performance" trade-off, but a technical judgment of "implicit estimation quality vs. explicit annotation precision."
+   *GRPO is Secretly a PRM* proves GRPO implicitly implements a PRM, implying GRPO's ceiling may be limited by Monte-Carlo PRM estimation quality and that the choice between explicit PRM and GRPO becomes a technical judgment of implicit estimation quality vs. explicit annotation precision.
 
-2. **New "Explore-Exploit" Dimension for Test-Time Compute**
-   ESamp reveals a critical blind spot in test-time scaling: existing methods (Best-of-N, MCTS, Speculative Decoding) all focus on "how to leverage existing knowledge," while ESamp is the first to systematically address "how to discover new knowledge during generation." The architectural design decoupling Distiller's online training from main model inference has direct reference value for test-time systems engineering.
+2. **New Explore-Exploit Dimension for Test-Time Compute**
+   ESamp and ADaPT together point to a trend: test-time scaling is no longer just "generate more candidates and select," but "dynamically decide thinking depth during generation" and "guide the model toward semantically unexplored regions."
 
-3. **The "Long-termism" Turn in Agent Evaluation**
-   CEO-Bench contrasts sharply with GAIA, SWE-bench, and other benchmarks — the latter asks "can the agent complete this task," while the former asks "can the agent continuously make favorable decisions in a dynamic environment." This marks a paradigm shift in agent evaluation from "task completion" to "survival adaptability." If this direction expands, we may see long-term survival challenges akin to an "Agent Turing Test."
+3. **Agent Evaluation Shifts from Task Completion to Long-Term Survival**
+   CEO-Bench and this week's many agent-evaluation papers show the community moving from "can it complete this task?" to "can it continuously make favorable decisions in dynamic environments?"
 
-4. **Data Recipes Replacing Reward Engineering**
-   "Beyond Reward Engineering" and CEO-Bench together point to a trend: RL training bottlenecks may lie not in reward function design but in training data construction. 14K carefully curated examples can surpass complex reward engineering, with profound methodological implications for RL research.
+4. **Visual AR Generation Enters the Spatial-Parallel Era**
+   SSD shifts autoregressive visual generation from 1D raster-scan to 2D spatial speculative decoding. Combined with native 2D representations such as VAR/MAR, diffusion models' dominance in image generation may be genuinely challenged.
 
-5. **Rise of Graph-Structured Reasoning Path Representations**
-   GraphPO represents reasoning as a DAG, optimizing policy through semantic equivalence class merging and dual-group graph advantage estimation. This represents an important evolution from "chain-of-thought" to "graph-of-thought," potentially inspiring follow-up work exploring more complex reasoning topologies (e.g., cyclic reasoning, probabilistic graph reasoning).
+5. **World Models Move from Looking Right to Evolving Right**
+   WRBench puts the persistent-state core on the agenda, shifting world-model evaluation from frame-level fidelity to state-level causal consistency and inspiring more work on explicit state memory and physics-engine coupling.
 
 ---
 
@@ -132,22 +176,26 @@
 
 **中文：**
 
-**如果你做RL/LLM后训练 / If you work on RL or LLM post-training:**
-> 精读 GRPO is Secretly a PRM (ICML 2026) → 手推 Theorem 1 → 在自有GRPO代码中实现λ-GRPO → 对比原版GRPO → 思考：你的任务中哪些步骤是高频/低频的？
+**如果你做 RL / LLM 后训练 / If you work on RL or LLM post-training:**
+> 精读 *GRPO is Secretly a PRM* → 手推 Theorem 1 → 在自有 GRPO 代码中实现 λ-GRPO → 对比原版 GRPO → 思考：你的任务中哪些步骤是高频/低频的？
 
-**如果你做Test-Time Compute/解码 / If you work on test-time compute or decoding:**
-> 精读 LLMs Explore by Latent Distilling (ICML 2026) → 运行本仓库中的 [esamp.py](llm-explore-by-latent-distilling/code/esamp.py) → 将ESamp集成到你的推理框架中 → 在自有任务上测试β敏感度
+**如果你做 Test-Time Compute / 解码 / If you work on test-time compute or decoding:**
+> 精读 *Large Language Models Explore by Latent Distilling* → 运行本仓库中的 [esamp.py](llm-explore-by-latent-distilling/code/) → 将 ESamp 集成到你的推理框架中 → 在自有任务上测试 β 敏感度；同时浏览 ADaPT 的 mode-selection 思路。
 
-**如果你做Agent评测/规划 / If you work on agent evaluation or planning:**
-> 精读 CEO-Bench → 分析其环境设计抽象方法 → 思考：你的领域是否有类似需要"长期适应"的任务？→ 延伸阅读: GAIA, AgentBench
+**如果你做 Agent 评测 / 规划 / If you work on agent evaluation or planning:**
+> 精读 *CEO-Bench* → 分析其环境设计抽象方法 → 思考：你的领域是否有类似需要“长期适应”的任务？→ 延伸阅读: GAIA, AgentBench。
 
-**如果你做推理路径优化 / If you work on reasoning path optimization:**
-> 精读 GraphPO (arXiv) → 对比链式/树式/图式推理的优势 → 思考：你的任务中是否存在语义等价路径合并的机会？
+**如果你做视觉生成 / If you work on visual generation:**
+> 精读 *SSD*（含本仓库 [ssd.py](ssd-spatially-speculative-decoding/code/ssd.py) 复现代码）→ 理解水平/垂直 draft 与隐藏状态蒸馏 → 思考：你的 AR 生成任务能否从空间投机中受益？
 
-**本周必读 (All areas) / Must-read this week (All areas):**
-1. GRPO is Secretly a Process Reward Model — 理论优雅，可能改变你对GRPO的认知
-2. LLMs Explore by Latent Distilling — 有代码复现，test-time方向的创意之作
-3. Beyond Reward Engineering: A Data Recipe for Long-Context RL — 数据-centric RL的新标杆
+**如果你做世界模型 / 具身智能 / If you work on world models or embodied AI:**
+> 精读 *Current World Models Lack a Persistent State Core* → 理解 WRBench 的三个评测问题 → 思考：你的生成模型是否也只是“跟踪镜头”？
+
+**本周必读（全领域）/ Must-read this week (All areas):**
+1. *GRPO is Secretly a Process Reward Model* — 理论优雅，可能改变你对 GRPO 的认知。
+2. *Large Language Models Explore by Latent Distilling* — 有代码复现，test-time 方向的创意之作。
+3. *SSD* — 有代码复现，视觉 AR 生成的前沿加速思路。
+4. *Current World Models Lack a Persistent State Core* — 范式级问题定义，可能重塑世界模型评测。
 
 ---
 
@@ -155,11 +203,12 @@
 
 | 事件 / Event | 日期 / Date | 状态 / Status |
 |---|---|---|
+| CVPR 2026 Conference | Jun 8–15, 2026 | 已结束 / Concluded |
+| CVPR 2026 Awards | Jun 2026 | 已公布 / Announced |
 | ICML 2026 Conference | Jul 2026 | 即将召开 / Upcoming |
 | NeurIPS 2026 Review Period | Jun–Jul 2026 | 审稿中 / Under review |
-| ECCV 2026 Review Period | Jun–Jul 2026 | 审稿中 / Under review |
+| ECCV 2026 Review Period / Final Decisions | Jun 2026 | 陆续放出 / Rolling out |
 | AAAI 2027 Submission Deadline | Aug 2026 | 准备中 / Preparation |
-| CVPR 2026 Code Release Wave | Jun 2026 | 进行中 / Ongoing |
 
 ---
 
@@ -167,8 +216,10 @@
 
 - [ICML 2026 Papers](https://icml.cc/virtual/2026/papers.html)
 - [ICML 2026 Paper Digest Highlights](https://www.paperdigest.org/2026/05/icml-2026-papers-highlights/)
+- [CVPR 2026 Best Papers](https://cvpr.thecvf.com/Conferences/2026/News/Best_Papers)
 - [arXiv cs.CV Recent](https://arxiv.org/list/cs.CV/recent)
 - [arXiv cs.LG Recent](https://arxiv.org/list/cs.LG/recent)
 - [arXiv cs.AI Recent](https://arxiv.org/list/cs.AI/recent)
 - [arXiv cs.CL Recent](https://arxiv.org/list/cs.CL/recent)
+- [arXiv stat.ML Recent](https://arxiv.org/list/stat.ML/recent)
 - [Hugging Face Daily Papers](https://huggingface.co/papers)
