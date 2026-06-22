@@ -1,0 +1,24 @@
+# ASRI 配置
+market:
+  n_assets: 15
+  categories: [layer1, defi, stablecoin, meme, layer2]
+  n_days: 730
+
+asri:
+  window: 30  # rolling window days
+  weights:
+    price_comovement: 0.30
+    volume_anomaly: 0.20
+    stablecoin_peg: 0.20
+    tvl_change: 0.15
+    vol_clustering: 0.15
+
+alerts:
+  yellow_threshold: 1.0  # sigma
+  orange_threshold: 2.0
+  red_threshold: 3.0
+
+risk_actions:
+  yellow: "检查持仓风险暴露，设置止损"
+  orange: "降低仓位50%，增加稳定币配比"
+  red: "降低仓位至最低，启动止损"

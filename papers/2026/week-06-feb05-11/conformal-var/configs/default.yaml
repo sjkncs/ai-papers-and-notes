@@ -1,0 +1,33 @@
+# Conformal VaR 配置
+model:
+  base_forecaster:
+    type: quantile_regressor
+    quantile: 0.05
+    n_assets: 10
+  garch:
+    omega: 0.00005
+    alpha: 0.08
+    beta: 0.88
+
+conformal:
+  target_coverage: 0.95
+  decay_rate: 0.99  # exponential time decay
+  max_buffer_size: 200
+  min_buffer_for_correction: 10
+
+regime:
+  n_regimes: 3  # bull, bear, sideways
+  feature_dim: 5  # mean, vol, skew, kurtosis, trend
+  similarity_threshold: 0.5
+
+data:
+  n_assets: 10
+  n_days: 1000
+  lookback: 60
+  regime_switch_prob: 0.02
+
+evaluation:
+  methods: [historical, garch, quantile_base, conformal]
+  metrics: [coverage, avg_var, breach_rate, capital_efficiency]
+  regime_analysis: true
+  rolling_window: 60

@@ -1,0 +1,39 @@
+# Gen AI Stock 配置
+llm:
+  model: gpt-4o
+  temperature: 0.1
+  max_tokens: 1024
+  api_provider: openai
+
+rag:
+  knowledge_base:
+    doc_types: [sec_filing, options_data, analyst_report, earnings_call]
+    n_stocks: 50
+    embed_dim: 64
+  retrieval:
+    top_k: 5
+    similarity_threshold: 0.3
+
+factors:
+  templates:
+    - revenue_momentum
+    - margin_change
+    - iv_skew
+    - sentiment_score
+    - analyst_revision
+    - options_flow
+    - guidance_surprise
+    - debt_quality
+    - capex_efficiency
+    - insider_activity
+
+evaluation:
+  ic_horizons: [1, 5, 10, 20]
+  n_quantiles: 5
+  traditional_baselines: [momentum, value, volatility, quality]
+  orthogonality_threshold: 0.3
+
+backtest:
+  n_timesteps: 252
+  rebalance_freq: 20  # trading days
+  transaction_cost: 0.001

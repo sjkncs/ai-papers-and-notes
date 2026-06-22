@@ -1,0 +1,44 @@
+# MarketGANs 配置
+model:
+  type: factor_embedded_gan
+  n_assets: 20
+  n_factors: 3  # Fama-French: MKT, SMB, HML
+  latent_dim: 32
+  hidden_dim: 64
+
+tcn:
+  n_layers: 4
+  kernel_size: 3
+  dilation_base: 2  # 2^i dilation per layer
+
+discriminator:
+  type: multi_scale
+  temporal:
+    hidden_dim: 64
+    n_layers: 3
+  cross_sectional:
+    hidden_dim: 64
+  joint:
+    hidden_dim: 128
+
+training:
+  n_epochs: 1000
+  batch_size: 32
+  seq_len: 252  # 1 year
+  lr_generator: 0.0002
+  lr_discriminator: 0.0001
+  beta1: 0.5
+  beta2: 0.999
+
+loss:
+  adversarial_weight: 1.0
+  covariance_match_weight: 10.0
+  tail_dependence_weight: 5.0
+  vol_clustering_weight: 3.0
+
+data:
+  source: factor_model_synthetic
+  factor_vol: 0.15
+  idio_vol: 0.25
+  beta_range: [0.5, 1.5]
+  n_timesteps: 2520  # 10 years
