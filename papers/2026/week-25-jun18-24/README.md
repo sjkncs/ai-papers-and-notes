@@ -20,6 +20,22 @@
 5. **Persistent-state diagnosis for world models**: *Current World Models Lack a Persistent State Core* introduces WRBench and finds that current models do not evolve object states while unobserved;
 6. **Token-level decoupling for reasoning efficiency**: *ADaPT* uses `<think>` / `<answer>` mode-selection tokens to decouple efficiency and correctness signals, enabling continuously controllable fast/slow thinking.
 
+**追加 / Addendum (Jun 22–23):** arXiv 在 6 月 22–23 日迎来第二波释放，核心亮点进一步聚焦：
+1. **统一推理计算原语**：*SPIRAL* 将顺序、并行、聚合三种推理原语纳入端到端 RL 训练，扩展效率比 GRPO 提升最高 11 倍；
+2. **野外 4D 重建**：*Lift4D* 通过因果潜在条件化、可变形 3DGS 与视图条件扩散先验，实现单目视频动态物体的真实感 4D 重建；
+3. **稀疏奖励密集化**：*Success Visitation Matching* 用判别器自动学习过程奖励，在 LIBERO-90 和真实 WidowX 机器人上将样本效率提升约一倍；
+4. **长上下文外推**：*Randomized YaRN* 结合随机位置编码与长度课程，在 8K 训练数据上提升 16K–128K 推理性能；
+5. **Agent 上下文压缩**：*SelfCompact* 让模型自主决定何时压缩历史轨迹，避免固定阈值压缩导致的中间结果丢失；
+6. **MLLM 交错推理**：*AIR* 通过代码增强的 RL 训练，使多模态大模型具备自适应代码交错推理能力。
+
+**English addendum:** The second arXiv wave on June 22–23 further concentrated attention on:
+1. **Unified inference primitives**: *SPIRAL* unifies sequential, parallel, and aggregation reasoning primitives in end-to-end RL, improving scaling efficiency over GRPO by up to 11×;
+2. **In-the-wild 4D reconstruction**: *Lift4D* achieves photorealistic 4D reconstruction of dynamic objects from monocular video via causal latent conditioning, deformable 3DGS, and view-conditioned diffusion priors;
+3. **Sparse-to-dense rewards**: *Success Visitation Matching* automatically learns process rewards via a discriminator, approximately doubling sample efficiency on LIBERO-90 and a real WidowX robot;
+4. **Long-context extrapolation**: *Randomized YaRN* combines randomized positional encodings with a length curriculum, improving 16K–128K reasoning when trained on <8K data;
+5. **Agent context compression**: *SelfCompact* lets the model decide when to compress historical trajectories, avoiding intermediate-result loss from fixed-threshold compression;
+6. **MLLM interleaved reasoning**: *AIR* trains multimodal LLMs with code-augmented RL for adaptive code-interleaved reasoning.
+
 ---
 
 ## 重点论文深度分析 / Featured Papers with Deep Reviews
@@ -32,6 +48,9 @@
 | 4 | [SSD: Spatially Speculative Decoding Accelerates Autoregressive Image Generation](https://arxiv.org/abs/2606.20543) | CV / Systems | [review.md](ssd-spatially-speculative-decoding/review.md) | [code/](ssd-spatially-speculative-decoding/code/) |
 | 5 | [Current World Models Lack a Persistent State Core](https://arxiv.org/abs/2606.20545) | CV / World Models | [review.md](current-world-models-persistent-state/review.md) | — |
 | 6 | [ADaPT: Token-Level Decoupling for Efficient Large Reasoning Models](https://arxiv.org/abs/2606.19919) | NLP & LLM / Efficient Reasoning | [review.md](adapt-token-level-decoupling/review.md) | — |
+| 7 | [SPIRAL: Learning to Search and Aggregate](https://arxiv.org/abs/2606.23595) | Agents / Reasoning | [review.md](spiral-learning-to-search-and-aggregate/review.md) | — |
+| 8 | [Lift4D: Harmonizing Single-View 3D Estimation for 4D Reconstruction In-the-Wild](https://arxiv.org/abs/2606.23688) | CV / 4D Reconstruction | [review.md](lift4d-harmonizing-single-view-3d/review.md) | — |
+| 9 | [Learning Process Rewards via Success Visitation Matching for Efficient RL](https://arxiv.org/abs/2606.23640) | RL / Robotics | [review.md](success-visitation-matching-rl/review.md) | [code/](success-visitation-matching-rl/code/) |
 
 ---
 
@@ -45,6 +64,10 @@
 
 | 论文 / Paper | 要点 / Key Point |
 |---|---|
+| **[Open Problem: Is AdamW Effective Under Heavy-Tailed Noise?](https://arxiv.org/abs/2606.23676)** | 提出开放问题：重尾噪声下 AdamW 是否仍然有效，涉及优化器理论与实际训练偏差的边界。 |
+| **[Tapered Language Models](https://arxiv.org/abs/2606.23670)** | 提出锥形语言模型，探索非均匀宽度扩展对语言建模的影响。 |
+| **[On the Limits of Prompt-Conditioned Language Models as General-Purpose Learners](https://arxiv.org/abs/2606.23668)** | 分析提示条件语言模型作为通用学习器的理论极限。 |
+| **[Convergence of Gradient Descent for General Neural Network Architectures Beyond the NTK Regime](https://arxiv.org/abs/2606.23364)** | 超越 NTK 框架的一般神经网络架构梯度下降收敛性分析。 |
 | **[GRPO is Secretly a Process Reward Model](https://arxiv.org/abs/2509.21154)** | ICML 2026。严格证明 GRPO 等价于隐式蒙特卡洛 PRM，提出 λ-GRPO 解决步骤频率不平衡。Qwen-1.5B 准确率从 48.37% 提升至 55.76%。 |
 | **What Characterizes Effective Reasoning? Revisiting CoT** | ICML 2026。重新审视思维链长度、回顾和结构对推理效果的影响。 |
 | **Position: We Need A Unified Definition of Hallucination** | ICML 2026。主张幻觉的本质是世界模型缺陷。 |
@@ -59,6 +82,11 @@
 
 | 论文 / Paper | 要点 / Key Point |
 |---|---|
+| **[Randomized YaRN Improves Length Generalization for Long-Context Reasoning](https://arxiv.org/abs/2606.23687)** | 结合 YaRN 位置外推、随机位置编码与长度课程，8K 训练即可提升 16K–128K 推理。 |
+| **[Self-Compacting Language Model Agents](https://arxiv.org/abs/2606.23525)** | 让模型自主决定何时压缩历史轨迹，六类竞争数学与 Agent 搜索基准上匹配或超越固定间隔压缩。 |
+| **[LangMAP: A Language-Adaptive Approach to Tokenization](https://arxiv.org/abs/2606.23566)** | 语言自适应 tokenization 方法。 |
+| **[TriggerBench: Investigating Prospective Memory for Large Language Models](https://arxiv.org/abs/2606.23459)** | 面向大语言模型前瞻性记忆的基准测试。 |
+| **[The Topology of Ill-Posed Questions: Persistent Homology for Detection and Steering in LLMs](https://arxiv.org/abs/2606.23590)** | 用持续同调检测和引导 LLM 对歧义/欠约束问题的响应行为。 |
 | **[Large Language Models Explore by Latent Distilling](https://arxiv.org/abs/2604.24927)** | ICML 2026。ESamp 通过潜空间蒸馏预测误差引导语义探索，AIME25 Pass@16 达 31.7%，开销 <5%。 |
 | **[ADaPT: Token-Level Decoupling for Efficient Large Reasoning Models](https://arxiv.org/abs/2606.19919)** | token 级快慢思考解耦，推理时连续控制效率-性能权衡。 |
 | **GraphPO: Graph-based Policy Optimization for Reasoning Models** | 将推理路径建模为 DAG，语义等价路径共享后缀。Qwen2.5-7B 数学基准达 40.9%。 |
@@ -74,6 +102,10 @@
 
 | 论文 / Paper | 要点 / Key Point |
 |---|---|
+| **[SPIRAL: Learning to Search and Aggregate](https://arxiv.org/abs/2606.23595)** | 顺序-并行-聚合三种推理原语端到端 RL 训练，扩展效率比 GRPO 提升最高 11 倍。 |
+| **[Learning Process Rewards via Success Visitation Matching for Efficient RL](https://arxiv.org/abs/2606.23640)** | 用判别器自动学习过程奖励，LIBERO-90 和真实 WidowX 上样本效率提升约一倍。 |
+| **[Self-Compacting Language Model Agents](https://arxiv.org/abs/2606.23525)** | 模型自主决定何时压缩 Agent 历史上下文，避免固定阈值压缩的缺陷。 |
+| **[EnterpriseClawBench: Benchmarking Agents from Real Workplace Sessions](https://arxiv.org/abs/2606.23654)** | 从真实企业工作场所会话构建的 Agent 评测协议，最佳配置仅达 0.663。 |
 | **[CEO-Bench: Can Agents Play the Long Game?](https://arxiv.org/abs/2606.18543)** | CEO 战略决策模拟评测，仅 Claude Opus 4.8 和 GPT-5.5 能保持不亏损。 |
 | **MetaResearcher: Scaling Deep Research via Self-Reflective Reinforcement Learning** | 对抗虚拟环境中的自反思 RL 扩展深度研究 Agent。 |
 | **ScaffoldAgent: Utility-Guided Dynamic Outline Optimization for Open-Ended Deep Research** | 效用引导的动态大纲优化用于开放式深度研究。 |
@@ -89,6 +121,11 @@
 
 | 论文 / Paper | 要点 / Key Point |
 |---|---|
+| **[Lift4D: Harmonizing Single-View 3D Estimation for 4D Reconstruction In-the-Wild](https://arxiv.org/abs/2606.23688)** | 单目视频野外 4D 重建；因果潜在条件化 + 可变形 3DGS + 视图条件扩散先验。 |
+| **[IMAGIN-4D: Image-Guided Controllable Interaction Generation](https://arxiv.org/abs/2606.23675)** | 图像引导的可控交互生成，扩展人与物体交互的 4D 合成。 |
+| **[AIR: Adaptive Interleaved Reasoning with Code in MLLMs](https://arxiv.org/abs/2606.23678)** | 多模态大模型自适应代码交错推理，数值计算任务平均提升 6.1 pp。 |
+| **[Keep The Essentials: Efficient Reference Conditioned Generation via Token Dropping](https://arxiv.org/abs/2606.23682)** | 参考图像 token 稀疏化，在保持生成质量的同时加速参考条件扩散模型。 |
+| **[DiT-Reward: Generative Representations for Text-to-Image Reward Modeling](https://arxiv.org/abs/2606.23626)** | 用 DiT 学习文本到图像生成的奖励表示。 |
 | **[SSD: Spatially Speculative Decoding Accelerates Autoregressive Image Generation](https://arxiv.org/abs/2606.20543)** | 空间投机解码，AR 图像生成最高 13.3× 加速。 |
 | **[Current World Models Lack a Persistent State Core](https://arxiv.org/abs/2606.20545)** | WRBench 诊断世界模型持久状态核心，揭示目标离屏后状态不演化。 |
 | **JanusMesh: Fast and Zero-Shot 3D Visual Illusion Generation via Cross-Space Denoising** | ECCV 2026。跨空间去噪实现零样本 3D 视觉错觉生成。 |
@@ -104,6 +141,10 @@
 
 | 论文 / Paper | 要点 / Key Point |
 |---|---|
+| **[SVD-Surgeon: Optimal Singular-Value Surgery for Large Language Model Compression](https://arxiv.org/abs/2606.23568)** | 最优奇异值手术用于大语言模型压缩。 |
+| **[HyperQuant: A Rate-Distortion-Optimal Quantization Pipeline for Large Language and Diffusion Models](https://arxiv.org/abs/2606.23406)** | 面向 LLM 与扩散模型的率失真最优量化流程。 |
+| **[GRINQH: Graded Input-based Quantization Hierarchy for Efficient LLM Generation](https://arxiv.org/abs/2606.23419)** | 分级输入量化层次结构，提升 LLM 生成效率。 |
+| **[Scheduling Thoughts: Learning the Order of Thought in Diffusion Language Models](https://arxiv.org/abs/2606.23567)** | 在扩散语言模型中学习思考顺序。 |
 | **JetFlow: Breaking the Scaling Ceiling of Speculative Decoding** | 并行树状起草突破推测解码扩展瓶颈。 |
 | **Execution-State Capsules: Graph-Bound Execution-State Checkpoint and Restore** | 物理 AI 端侧低延迟服务的执行状态胶囊。 |
 | **StreamKL: Fast and Memory-Efficient KL Divergence for Boosting Attention Distillation** | 快速内存高效的 KL 散度用于注意力蒸馏。 |
@@ -116,6 +157,7 @@
 
 | 论文 / Paper | 要点 / Key Point |
 |---|---|
+| **[Learning Process Rewards via Success Visitation Matching for Efficient RL](https://arxiv.org/abs/2606.23640)** | 判别器学习成功/失败访问分布，构造密集过程奖励，提升机器人操作样本效率。 |
 | **ENPIRE: Agentic Robot Policy Self-Improvement in the Real World** | 真实世界中的 Agentic 机器人策略自改进。 |
 | **Reward as An Agent for Embodied World Models** | 将奖励建模为具身世界模型中的 Agent。 |
 | **HumanScale: Egocentric Human Video Can Outperform Real-Robot Data for Embodied Pretraining** | 第一人称人体视频可超越真机数据做具身预训练。 |
@@ -153,6 +195,15 @@
 5. **世界模型从“看起来像”走向“演得像” / World Models Move from Looking Right to Evolving Right**
    WRBench 把“持久状态核心”推上议程，世界模型评测将从帧级 fidelity 转向状态级因果一致性，催生更多显式状态记忆与物理引擎耦合的工作。
 
+6. **推理计算进入“统一原语”时代 / Reasoning Compute Enters the Unified-Primitive Era**
+   SPIRAL 将顺序、并行、聚合三种推理原语纳入同一 RL 训练目标，意味着未来 test-time compute 的优化将不再孤立地优化“采样更多”或“链更长”，而是把它们当作可组合的推理计算单元统一调度。
+
+7. **野外 4D 重建走向测试时优化范式 / In-the-Wild 4D Reconstruction Moves to Test-Time Optimization**
+   Lift4D 不再依赖稀缺的 4D 训练数据，而是把单视图 3D 先验、时序一致性和扩散补全放在测试时联合优化，这可能会成为动态场景真实感重建的主流范式。
+
+8. **稀疏奖励的自动密集化成为 RL 实用化的关键 / Automatic Densification of Sparse Rewards Becomes Key to Practical RL**
+   Success Visitation Matching 表明，仅从历史成功/失败片段中学习判别器，就能构造出保持最优策略不变的密集过程奖励，这可能大幅降低真实机器人任务中手工设计奖励函数的成本。
+
 **English:**
 
 1. **The Era of GRPO Theoretical Decryption Arrives**
@@ -169,6 +220,15 @@
 
 5. **World Models Move from Looking Right to Evolving Right**
    WRBench puts the persistent-state core on the agenda, shifting world-model evaluation from frame-level fidelity to state-level causal consistency and inspiring more work on explicit state memory and physics-engine coupling.
+
+6. **Reasoning Compute Enters the Unified-Primitive Era**
+   SPIRAL unifies sequential, parallel, and aggregation primitives under a single RL training objective, implying future test-time compute optimization will no longer孤立地 optimize "sample more" or "longer chains" but treat them as composable inference-compute units.
+
+7. **In-the-Wild 4D Reconstruction Moves to Test-Time Optimization**
+   Lift4D no longer relies on scarce 4D training data; instead it jointly optimizes single-view 3D priors, temporal consistency, and diffusion completion at test time, which may become the mainstream paradigm for photorealistic dynamic-scene reconstruction.
+
+8. **Automatic Densification of Sparse Rewards Becomes Key to Practical RL**
+   Success Visitation Matching shows that learning a discriminator from historical successful and failed episodes alone can construct dense process rewards that preserve the optimal policy, potentially greatly reducing the cost of hand-crafted reward functions in real robot tasks.
 
 ---
 
@@ -191,11 +251,26 @@
 **如果你做世界模型 / 具身智能 / If you work on world models or embodied AI:**
 > 精读 *Current World Models Lack a Persistent State Core* → 理解 WRBench 的三个评测问题 → 思考：你的生成模型是否也只是“跟踪镜头”？
 
+**如果你做 Agent 推理 / 多步搜索 / If you work on agent reasoning or multi-step search:**
+> 精读 *SPIRAL* → 理解 set RL + 聚合器 RL 的双训练结构 → 思考：你的 Agent 系统是否只用顺序推理？能否引入并行搜索或聚合步骤？
+
+**如果你做 3D 视觉 / 4D 重建 / If you work on 3D vision or 4D reconstruction:**
+> 精读 *Lift4D* → 关注因果潜在条件化与视图条件扩散先验的协同 → 思考：你的 4D 任务能否也采用测试时优化范式？
+
+**如果你做机器人学习 / VLA / If you work on robot learning or VLA:**
+> 精读 *Success Visitation Matching* → 运行本仓库中的 [svm_reward_ppo.py](success-visitation-matching-rl/code/svm_reward_ppo.py) → 在自有稀疏奖励任务上测试判别器更新频率的敏感性。
+
+**如果你做长上下文 LLM / If you work on long-context LLMs:**
+> 精读 *Randomized YaRN* → 对比你的系统是否仍在使用 RoPE/ALiBi → 考虑引入随机位置编码与长度课程。
+
 **本周必读（全领域）/ Must-read this week (All areas):**
 1. *GRPO is Secretly a Process Reward Model* — 理论优雅，可能改变你对 GRPO 的认知。
 2. *Large Language Models Explore by Latent Distilling* — 有代码复现，test-time 方向的创意之作。
 3. *SSD* — 有代码复现，视觉 AR 生成的前沿加速思路。
 4. *Current World Models Lack a Persistent State Core* — 范式级问题定义，可能重塑世界模型评测。
+5. *SPIRAL* — 推理计算的统一原语框架，对任何做 test-time compute 的研究者都有启发。
+6. *Lift4D* — 4D 重建的测试时优化范式，CV 方向的重要进展。
+7. *Success Visitation Matching* — 有代码复现，RL 稀疏奖励密集化的实用方法。
 
 ---
 
@@ -215,11 +290,15 @@
 ## 数据来源 / Sources
 
 - [ICML 2026 Papers](https://icml.cc/virtual/2026/papers.html)
+- [ICML 2026 Workshops](https://blog.icml.cc/2026/04/06/announcing-the-icml-2026-workshops-and-affinity-workshops/)
+- [ICML 2026 Tutorials](https://blog.icml.cc/2026/04/02/announcing-the-icml-2026-tutorials/)
 - [ICML 2026 Paper Digest Highlights](https://www.paperdigest.org/2026/05/icml-2026-papers-highlights/)
 - [CVPR 2026 Best Papers](https://cvpr.thecvf.com/Conferences/2026/News/Best_Papers)
 - [arXiv cs.CV Recent](https://arxiv.org/list/cs.CV/recent)
 - [arXiv cs.LG Recent](https://arxiv.org/list/cs.LG/recent)
 - [arXiv cs.AI Recent](https://arxiv.org/list/cs.AI/recent)
 - [arXiv cs.CL Recent](https://arxiv.org/list/cs.CL/recent)
+- [arXiv cs.RO Recent](https://arxiv.org/list/cs.RO/recent)
 - [arXiv stat.ML Recent](https://arxiv.org/list/stat.ML/recent)
 - [Hugging Face Daily Papers](https://huggingface.co/papers)
+- [Hugging Face Trending Papers](https://huggingface.co/papers/trending)
