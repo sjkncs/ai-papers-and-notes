@@ -1,6 +1,6 @@
 # LLMs and Stock Investing: Is the Human Factor Required?
 
-> **arXiv:** 2603 (Mar 2026) | **作者 / Authors:** Crisostomo, Mykhalyuk
+> **arXiv:** [2603.19944](https://arxiv.org/abs/2603.19944) | **日期 / Date:** 2026-03-20 | **作者 / Authors:** Crisostomo, Mykhalyuk
 
 ---
 

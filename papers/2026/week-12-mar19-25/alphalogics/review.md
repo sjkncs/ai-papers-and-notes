@@ -1,6 +1,6 @@
 # AlphaLogics: Market Logic-Driven Multi-Agent System for Alpha Factor Generation
 
-> **arXiv:** 2603 (Mar 2026) | **作者 / Authors:** Weng et al.
+> **arXiv:** [2603.20247](https://arxiv.org/abs/2603.20247) | **日期 / Date:** 2026-03-10 | **作者 / Authors:** Weng et al.
 
 ---
 

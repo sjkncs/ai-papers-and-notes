@@ -1,6 +1,6 @@
 # E-TRENDS: Enhanced LSTM Trend Forecasting for Equities
 
-> **arXiv:** 2603 (Mar 2026) | **作者 / Authors:** Buchanan, Benhamou
+> **arXiv:** [2603.14453](https://arxiv.org/abs/2603.14453) | **日期 / Date:** 2026-03-15 | **作者 / Authors:** Buchanan, Benhamou
 
 ---
 

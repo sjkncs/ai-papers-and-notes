@@ -1,6 +1,6 @@
 # Joint Return and Risk Modeling with Deep Neural Networks
 
-> **arXiv:** 2603 (Mar 2026) | **作者 / Authors:** Park
+> **arXiv:** [2603.19288](https://arxiv.org/abs/2603.19288) | **日期 / Date:** 2026-03-09 | **作者 / Authors:** Park
 
 ---
 

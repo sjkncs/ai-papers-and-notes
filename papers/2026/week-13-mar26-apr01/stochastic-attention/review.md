@@ -1,6 +1,6 @@
-# Stochastic Attention via Langevin Dynamics
+# Stochastic Attention via Langevin Dynamics on the Modern Hopfield Energy
 
-> **arXiv:** 2603 (Mar 2026)
+> **arXiv:** [2603.06875](https://arxiv.org/abs/2603.06875) | **日期 / Date:** 2026-03-06
 
 ---
 
