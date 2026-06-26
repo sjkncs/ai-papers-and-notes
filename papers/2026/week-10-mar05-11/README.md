@@ -4,19 +4,23 @@
 
 ## 本周学术动态 / Weekly Highlights
 
-**中文：** 2026 年第 10 周（3 月 5–11 日），arXiv 五个核心类别（cs.CV / cs.LG / cs.AI / cs.CL / stat.ML）共新增约 **2,610** 篇论文。本周核心主题围绕“Agentic AI 的工程化落地”与“推理效率的视觉-语言协同”展开：
+**中文：** 2026 年第 10 周（3 月 5–11 日），arXiv 五个核心类别（cs.CV / cs.LG / cs.AI / cs.CL / stat.ML）共新增约 **2,610** 篇论文。本周核心主题围绕“Agentic AI 的工程化落地”“Transformer 内部机制解密”与“推理效率的视觉-语言协同”展开：
 1. **小模型多语言深度覆盖**：*Tiny Aya* 以 3.35B 参数覆盖 70 种语言，展示“用更聪明的训练替代简单缩放”的新路径；
 2. **金融 Agent 的系统化架构**：*AI Agents in Financial Markets* 提出感知-推理-决策-执行四层架构，将金融自动化从孤立预测任务推向端到端代理工作流；
 3. **自主因子投资的 Agentic AI 实践**：*Autonomous Factor Investing via Agentic AI* 用 LLM 驱动的因子假设、自动回测与自适应组合，报告样本外 Sharpe 3.11；
-4. **推理效率与可信性并重**：从 SPOT 的潜在停顿推理、SmartThinker 的 CoT 长度校准，到 C2-Faith 对 CoT 忠实度的评测，研究者在压缩推理成本的同时追问推理是否可信；
-5. **具身智能与世界模型交汇**：MetaWorld-X、PlayWorld、AtomicVLA 等工作将 VLA、世界模型与原子技能学习结合，推动机器人从模仿走向可组合泛化。
+4. **Transformer 注意力机制的解剖学**：*The Spike, the Sparse and the Sink* 揭示大规模激活与注意力汇聚是 pre-norm 架构的产物，两者功能独立但常共现；
+5. **VLM 幻觉的生成前检测**：*HALP* 证明在不生成任何 token 的情况下，通过探测内部表示即可预测幻觉风险，最高达 0.93 AUROC；
+6. **推理效率与可信性并重**：从 SPOT 的潜在停顿推理、SmartThinker 的 CoT 长度校准，到 C2-Faith 对 CoT 忠实度的评测，研究者在压缩推理成本的同时追问推理是否可信；
+7. **具身智能与世界模型交汇**：MetaWorld-X、PlayWorld、AtomicVLA 等工作将 VLA、世界模型与原子技能学习结合，推动机器人从模仿走向可组合泛化。
 
-**English:** Week 10 of 2026 (March 5–11) saw approximately **2,610** new papers across the five core arXiv categories (cs.CV / cs.LG / cs.AI / cs.CL / stat.ML). The week centered on the engineering of Agentic AI and vision-language synergy for reasoning efficiency:
+**English:** Week 10 of 2026 (March 5–11) saw approximately **2,610** new papers across the five core arXiv categories (cs.CV / cs.LG / cs.AI / cs.CL / stat.ML). The week centered on the engineering of Agentic AI, the dissection of Transformer internals, and vision-language synergy for reasoning efficiency:
 1. **Small-model multilingual depth**: *Tiny Aya* covers 70 languages with only 3.35B parameters, showing a new path of "smarter training instead of simple scaling";
 2. **Systematic financial-agent architecture**: *AI Agents in Financial Markets* proposes a four-layer perception-reasoning-decision-execution architecture, moving financial automation from isolated prediction to end-to-end agentic workflows;
 3. **Agentic AI for autonomous factor investing**: *Autonomous Factor Investing via Agentic AI* uses LLM-driven factor hypotheses, automatic backtesting, and adaptive portfolio construction, reporting an out-of-sample Sharpe of 3.11;
-4. **Reasoning efficiency plus trustworthiness**: SPOT compresses explicit CoT into latent reasoning, SmartThinker calibrates CoT length, and C2-Faith benchmarks causal/coverage faithfulness, asking whether cheaper reasoning remains reliable;
-5. **Embodied AI meets world models**: MetaWorld-X, PlayWorld, and AtomicVLA combine VLA, world models, and atomic skill learning to push robots from imitation toward compositional generalization.
+4. **Anatomy of Transformer attention**: *The Spike, the Sparse and the Sink* reveals that massive activations and attention sinks are artifacts of the pre-norm architecture and serve related but distinct functions;
+5. **Pre-generation hallucination detection for VLMs**: *HALP* demonstrates that hallucination risk can be predicted by probing internal representations without generating any token, achieving up to 0.93 AUROC;
+6. **Reasoning efficiency plus trustworthiness**: SPOT compresses explicit CoT into latent reasoning, SmartThinker calibrates CoT length, and C2-Faith benchmarks causal/coverage faithfulness, asking whether cheaper reasoning remains reliable;
+7. **Embodied AI meets world models**: MetaWorld-X, PlayWorld, and AtomicVLA combine VLA, world models, and atomic skill learning to push robots from imitation toward compositional generalization.
 
 ---
 
@@ -27,6 +31,8 @@
 | 1 | [Tiny Aya: Bridging Scale and Multilingual Depth](https://arxiv.org/abs/2603.11510) | Multilingual LLM | [review.md](tiny-aya/review.md) | — |
 | 2 | [AI Agents in Financial Markets: Architecture, Applications, and Systemic Implications](https://arxiv.org/abs/2603.13942) | AI Finance Survey | [review.md](ai-agents-finance/review.md) | — |
 | 3 | [Autonomous Factor Investing via Agentic AI](https://arxiv.org/abs/2603.14288) | Quant Factor Investing | [review.md](autonomous-factor/review.md) | [numpy code](autonomous-factor/code/autonomous_factor.py) / [PyTorch code](autonomous-factor/code/autonomous_factor_pytorch.py) |
+| 4 | [The Spike, the Sparse and the Sink: Anatomy of Massive Activations and Attention Sinks](https://arxiv.org/abs/2603.05498) | ML Theory / Transformer Internals | [review.md](spike-sparse-sink-attention/review.md) | [code/](spike-sparse-sink-attention/code/) |
+| 5 | [HALP: Detecting Hallucinations in Vision-Language Models without Generating a Single Token](https://arxiv.org/abs/2603.05465) | CV / VLM Safety | [review.md](halp-hallucination-detection/review.md) | — |
 
 ---
 
@@ -44,7 +50,7 @@
 | [DyQ-VLA: Temporal-Dynamic-Aware Quantization for Embodied Vision-Language-Action Models](https://arxiv.org/abs/2603.07904v2) | CV | 提出面向具身 VLA 模型的时序动态感知量化框架，基于运动学代理动态切换并分配比特宽度，在保持 99.5% 性能的同时将内存占用降至 30.9%。It proposes a temporal-dynamic-aware quantization framework for embodied VLAs that uses kinematic proxies to dynamically switch and allocate bit-widths, reducing memory footprint to 30.9% while retaining 99.5% performance. |
 | [SAMoE-VLA: A Scene Adaptive Mixture-of-Experts Vision-Language-Action Model for Autonomous Driving](https://arxiv.org/abs/2603.08113v1) | CV | 提出场景自适应 MoE VLA 模型，用鸟瞰图特征替代 token 嵌入进行专家路由，并引入条件跨模态因果注意力，在自动驾驶开环与闭环基准上达到最先进性能。It proposes a scene-adaptive MoE VLA that routes experts with bird's-eye-view features and introduces conditional cross-modal causal attention, achieving state-of-the-art performance on open- and closed-loop autonomous-driving benchmarks. |
 | [LiveWorld: Simulating Out-of-Sight Dynamics in Generative Video World Models](https://arxiv.org/abs/2603.07145v2) | CV | 提出让生成式视频世界模型模拟视野外动态持续演化的框架，通过持久全局状态和监控机制保证物体在不可见时仍持续演化。It proposes a framework that enables generative video world models to simulate persistent out-of-sight dynamics via a persistent global state and monitor mechanism. |
-| [HALP: Detecting Hallucinations in Vision-Language Models without Generating a Single Token](https://arxiv.org/abs/2603.05465v1) | CV | 在不生成任何 token 的情况下，通过探测 VLM 内部表示预测幻觉风险，在多款现代 VLM 上达到最高 0.93 AUROC，支持早期干预与选择性解码。It predicts hallucination risk in VLMs without generating any tokens by probing internal representations, reaching up to 0.93 AUROC across modern VLMs to enable early intervention and selective decoding. |
+| [HALP: Detecting Hallucinations in Vision-Language Models without Generating a Single Token](https://arxiv.org/abs/2603.05465v1) ([review](halp-hallucination-detection/review.md)) | CV | 在不生成任何 token 的情况下，通过探测 VLM 内部表示预测幻觉风险，在多款现代 VLM 上达到最高 0.93 AUROC，支持早期干预与选择性解码。It predicts hallucination risk in VLMs without generating any tokens by probing internal representations, reaching up to 0.93 AUROC across modern VLMs to enable early intervention and selective decoding. |
 | [MultiHaystack: Benchmarking Multimodal Retrieval and Reasoning over 40K Images, Videos, and Documents](https://arxiv.org/abs/2603.05697v1) | CV | 推出首个大规模跨模态检索与推理基准，涵盖 46,000 余个图像、视频和文档候选，揭示跨模态检索是 MLLM 端到端可靠性的主要瓶颈。It introduces the first large-scale cross-modal retrieval-and-reasoning benchmark with over 46,000 candidates, revealing multimodal retrieval as a key bottleneck for end-to-end MLLM reliability. |
 | [PatchCue: Enhancing Vision-Language Model Reasoning with Patch-Based Visual Cues](https://arxiv.org/abs/2603.05869v2) | CV | 提出基于图像块的视觉提示范式，通过冷启动监督微调与过程奖励强化学习增强 VLM 视觉推理，性能优于像素级边界框与点提示。It proposes a patch-based visual cue paradigm that enhances VLM reasoning via supervised fine-tuning and process-reward RL, outperforming pixel-level bounding boxes and point cues. |
 
@@ -92,6 +98,7 @@
 
 | 论文 / Paper | 方向 / Area | 要点 / Key Point |
 |---|---|---|
+| **[The Spike, the Sparse and the Sink: Anatomy of Massive Activations and Attention Sinks](https://arxiv.org/abs/2603.05498v1)** ([review](spike-sparse-sink-attention/review.md)) | ML Theory | 揭示 Transformer 中大规模激活与注意力汇聚的因果关系：pre-norm 配置是两者共现的关键设计选择，消融后两者解耦；大规模激活全局运作如隐式参数，注意力汇聚局部运作并偏向短程依赖。It reveals the causal relationship between massive activations and attention sinks in Transformers: the pre-norm configuration enables their co-occurrence, and ablating it causes them to decouple; massive activations act globally like implicit parameters, while attention sinks operate locally and bias heads toward short-range dependencies. |
 | [CompassDPO: Dynamics-Controlled Direct Preference Optimization for Robust Safety Alignment](https://arxiv.org/abs/2603.07211v2) | ML Theory | 提出动态控制直接偏好优化框架，通过调节更新方向与幅度提升对噪声偏好标注的鲁棒性，在 PKU-SafeRLHF 上持续改进安全性。It proposes a dynamics-controlled DPO framework that improves robustness to noisy preference labels by regulating update direction and magnitude, consistently improving safety on PKU-SafeRLHF. |
 | [The Norm-Separation Delay Law of Grokking: A First-Principles Theory of Delayed Generalization](https://arxiv.org/abs/2603.13331v2) | ML Theory | 建立 Grokking 延迟的“范数分离延迟定律”，将延迟泛化重新解释为规范驱动的表示相变，并在 293 次训练运行中得到验证。It establishes the Norm-Separation Delay Law for grokking, reframing delayed generalization as a norm-driven representational phase transition and validating it across 293 training runs. |
 
