@@ -1,6 +1,6 @@
-# Autonomous AI Agents for Option Hedging
+# Autonomous AI Agents for Option Hedging: Enhancing Financial Stability through Shortfall Aware Reinforcement Learning
 
-> **arXiv:** 2603 (Mar 2026)
+> **arXiv:** [2603.06587](https://arxiv.org/abs/2603.06587) | **日期 / Date:** 2026-02-01
 
 ---
 

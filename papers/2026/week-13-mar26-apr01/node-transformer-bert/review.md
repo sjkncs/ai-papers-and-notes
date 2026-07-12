@@ -1,6 +1,6 @@
-# Node Transformer + BERT Stock Prediction
+# Stock Market Prediction Using Node Transformer Architecture Integrated with BERT Sentiment Analysis
 
-> **arXiv:** 2603 (Mar 2026)
+> **arXiv:** [2603.05917](https://arxiv.org/abs/2603.05917) | **日期 / Date:** 2026-03-06
 
 ---
 

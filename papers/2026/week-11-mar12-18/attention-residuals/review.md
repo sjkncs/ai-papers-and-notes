@@ -1,6 +1,6 @@
 # Attention Residuals
 
-> **arXiv:** [2603.15031](https://arxiv.org/abs/2603.15031) | **日期 / Date:** 2026-03-15 | **作者 / Authors:** (Attention Mechanism Researchers)
+> **arXiv:** [2603.15031](https://arxiv.org/abs/2603.15031) | **日期 / Date:** 2026-03-16
 
 ---
 
